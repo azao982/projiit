@@ -1,0 +1,62 @@
+/* Définir l'animation */
+@keyframes slideAnimation {
+  from {
+      transform: translateX(0); /* Position de départ */
+  }
+  to {
+      transform: translateX(100%); }
+}
+
+@media print {
+  .print {
+    display: none;
+  }
+}
+label{
+  font-weight: bold;
+}
+body {
+  padding-top: 20px;
+  margin: 0;
+   font-size: 14px;
+}
+
+.section {
+  padding: 50px 0;
+}
+
+.bg-white {
+  font-size: 12px;
+}
+
+/* Réduire la taille de l'image */
+.img-fluid{
+width:700px;
+border-radius:60px;
+animation: slideAnimation 3s linear infinite alternate; /* 3s pour aller et revenir */
+/* Définir une largeur maximale pour l'image */
+}
+
+/* Réduire la taille du background */
+.overlay-dark:after {
+  opacity: .6; /* Réduire l'opacité */
+}
+
+/* Réduire la taille des éléments du formulaire */
+.form-control {
+  font-size: 12px;
+}
+
+/* Réduire la taille des boutons */
+.btn {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.d{
+  text-align: center;
+  font-weight: bold;
+}
+h5{
+color: blue ,
+
+}

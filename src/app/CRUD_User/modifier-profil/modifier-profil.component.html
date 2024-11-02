@@ -1,0 +1,188 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row flex-lg-nowrap">
+
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body" style="background-color:rgb(218, 243, 249);">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 160px; width:150px; background-color: rgb(233, 236, 239);">
+                      <img src="assets/photoUser.png" width="155px" heigth="140px">
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.nom}}</h4>
+                    <p class="mb-0">{{user.email}}</p>
+                    <div class="text-muted"><small>Derniere vue depuis 2 heures passées</small></div>
+                    <div class="mt-2">
+                      <button class="btn btn-primary" (click)="changePhoto()" type="button" >
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span>Changer Photo</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-center text-sm-right">
+                    <span class="badge badge-secondary">{{user.fonction}}</span>
+                    <div class="text-muted"><small>Joined 23 May 2024</small></div>
+                  </div>
+                </div>
+              </div>
+              <ul class="nav nav-tabs">
+                <li class="nav-item"><a href="" class="active nav-link">Réglages</a></li>
+              </ul>
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                  <form (ngSubmit)="modifierUser()">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="nom"> <i class="fas fa-user"></i> Nom</label>
+                              <input class="form-control" type="text" name="nom" id="nom"  [(ngModel)]="user.nom" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="prenom"> <i class="fas fa-person"></i> Prénom</label>
+                              <input class="form-control" type="text" name="prenom" id="prenom"  [(ngModel)]="user.prenom" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="email"><i class="fas fa-at"></i> Email</label>
+                              <input class="form-control" type="email" name="email" id="email" [(ngModel)]="user.email" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="profile">Profile</label>
+                              <select class="form-control" id="profile" name="profile" [(ngModel)]="user.profile" required>
+                                <option *ngFor="let profil of profileOptions" [value]="profil">{{ profil }}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="mobile"> <i class="fas fa-phone"></i> Mobile</label>
+                              <input class="form-control" type="text" id="mobile" name="mobile" [(ngModel)]="user.mobile" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="cin"> <i class="fa fa-address-card"></i> CIN</label>
+                              <input class="form-control" type="text" name="cin" id="cin"  [(ngModel)]="user.cin" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="fonction"> <i class="fas fa-cogs"></i> Fonction</label>
+                              <input class="form-control" type="text" name="fonction"  id="fonction" [(ngModel)]="user.fonction" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                          <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="grade"> <i class="fa fa-graduation-cap"></i> Grade</label>
+                              <input class="form-control" type="text" id="grade" name="grade" [(ngModel)]="user.grade" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                          <br>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="cnrps"> <i class="fa fa-id-card"></i> CNRPS</label>
+                              <input class="form-control" type="text"  name="cnrps" id="cnrps" [(ngModel)]="user.cnrps" required readonly>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-12 col-sm-6 mb-3">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="password"> <i class="fa fa-lock"></i> Mot de passe actuel : </label>
+                              <input class="form-control" type="password" id="password"  name="password" [(ngModel)] = "user.password" required readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col d-flex justify-content-end">
+                        <button class="btn btn-primary" type="submit" (click)="modifierUser()"><i class="fas fa-edit"></i> Enregistrer Modifications</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3 mb-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="px-xl-3">
+              <button class="btn btn-block btn-secondary">
+                <i class="fa fa-sign-out"></i>
+                <a *ngIf="auth"   class="nav-link x"  (click)="logOut()" style="cursor: pointer; color:black;">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Déconnexion</span>
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title font-weight-bold">Aide</h6>
+            <p class="card-text">Allez Plus rapide et Contactez-nous </p>
+            <button type="button" class="btn btn-primary" routerLink="/accueil">Contactez-Nous</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.api-details {
+  background-color: #d6dfe7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.api-details-title {
+  color: #051f92;
+}
+
+.api-info {
+  margin-top: 20px;
+}
+
+.api-info p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.api-info-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.api-info-label {
+  font-weight: bold;
+  color: #333;
+}
+h4{
+  font-weight: bold;
+}

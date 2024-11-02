@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Demandes</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3eded;
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            min-height: 100%;
+            position: relative;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            padding-top: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-control {
+            height: 40px;
+        }
+
+        .input-group-btn .btn {
+            height: 40px;
+        }
+
+        .card {
+            border-radius: 20px; /* Augmentation de la bordure */
+            padding-top: 40px; /* Augmentation de l'espace en haut de la carte */
+            position: relative;
+            background-color: #fff;
+        }
+
+        .card-body {
+            padding-top: 80px; /* Ajustement de l'espace pour le contenu */
+        }
+
+        .avatar {
+            width: 80px; /* Augmentation de la taille de l'avatar */
+            height: 80px; /* Augmentation de la taille de l'avatar */
+            position: absolute;
+            top: 20px; /* Ajustement de la position de l'avatar */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+
+        .smooth-shadow-sm {
+            transition: all 0.3s ease;
+        }
+
+        .smooth-shadow-sm:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Augmentation de l'ombre au survol */
+        }
+
+        .text-center.mt-3 {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .text-center.mt-3 i {
+            font-size: 24px; /* Augmentation de la taille de l'icône */
+            cursor: pointer;
+        }
+
+        .fa-info-circle {
+            color: #535252;
+        }
+
+        .fa-trash {
+            color: #dd3243;
+        }
+
+        .fa-list-alt {
+            color: #3f3f3f;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center mb-4">
+                <i class="fa fa-list-alt"></i>
+                <b>Liste des demandes</b>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-4">
+        <div class="col-sm-12 text-right">
+            <div class="input-group">
+                <input type="text" id="searchInput" [(ngModel)]="searchKeyword" class="form-control" placeholder="Rechercher..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-dark" (click)="searchDemande()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="filtrerDemande(searchKeyword)">
+                        <i class="fa fa-filter"></i> Trier
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Loop through demand list -->
+        <div *ngFor="let Demande of (searchResults.length ? searchResults : demandes); let i = index" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <!-- Card structure for each demand -->
+            <div class="card rounded-bottom smooth-shadow-sm" [ngStyle]="{ 'background-color': getColor(i) }">
+                <!-- Avatar -->
+                <div class="avatar">
+                    <img [src]="avatars[i % avatars.length]" alt="Avatar" class="rounded-circle">
+                </div>
+                <!-- Card body -->
+                <div class="card-body" style="font-size: 15px;">
+                    <!-- Title and description for demand -->
+                    <p class="card-text mb-2"><strong>Référence:</strong> {{ Demande.reference }}</p>
+                    <p class="card-text mb-2"><strong>Nom:</strong> {{ Demande.nomapp }}</p>
+                    <p class="card-text mb-2"><strong>Publié:</strong> {{ Demande.publie }}</p>
+                    <p class="card-text mb-2"><strong>L'hébergeur de l'app:</strong> {{ Demande.hebergeurapp }}</p>
+                    <!-- Actions -->
+                    <div class="text-center mt-3">
+                        <i class="fa fa-info-circle" (click)="DetailDemande(Demande.idDemande)" style="font-size: 24px;"></i>
+                        <i class="fa fa-trash" (click)="supprimerDemande(Demande.idDemande)" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

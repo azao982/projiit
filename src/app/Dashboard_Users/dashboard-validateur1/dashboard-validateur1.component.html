@@ -1,0 +1,58 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<br><br>
+
+<div class="container">
+  <div class="row z">
+    <!-- Première partie pour le menu du validateur -->
+    <div class="col-md-3 menu-card">
+      <div class="user-profile__avatar shadow-effect text-center mb-4">
+        <img class="img-responsive center-block rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." style="width: 80px;">
+        <div>
+          <h4 class="mt-2">{{ user?.nom }}</h4> <!-- Affiche le nom de l'utilisateur connecté -->
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading bg-primary text-white text-center py-2">Menu validateur 1er niveau</div>
+        <div class="panel-body">
+          <ul class="list-unstyled text-center">
+            <li class="mb-2"><a (click)="detailUser(user?.idUser)" class="text-dark"><i class="fa fa-user"></i> Mon profil</a></li>
+            <li class="mb-2"><a [routerLink]="['/modifierUser', user?.idUser]" class="text-dark"><i class="fa fa-edit"></i> Modifier profil</a></li>
+            <li><a  (click)=" logout()" class="text-dark"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Deuxième partie pour les 3 cartes -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100 z">
+            <img src="assets/upd.jpg" class="card-img-top" (click)="modifierUser(user?.idUser)" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="fa fa-edit" (click)="modifierUser(user?.idUser)" style="cursor: pointer;"></i>
+              <strong class="d-block mt-2">Modifier Profil</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="assets/lista.jpg" class="card-img-top" (click)="listDemandeEnCours()" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="fa fa-list" (click)="listDemandeEnCours()" style="cursor: pointer;"></i>
+              <strong class="d-block mt-2">List demandes en cours</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mb-4">
+          <div class="card shadow-sm h-100 mx-auto" style="max-width: 50%;">
+            <img src="assets/details.jpg" class="card-img-top" (click)="detailUser(user?.idUser)" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="fa fa-circle-info" (click)="detailUser(user?.idUser)" style="cursor: pointer;"></i>
+              <strong class="d-block mt-2">Détails Profil</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

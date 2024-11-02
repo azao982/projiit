@@ -1,0 +1,106 @@
+
+
+.v{
+  margin-left:5px;
+}
+.b{
+  margin-left:5px;
+}
+.h{
+  margin-right:1000px;
+}
+p{
+  font-weight:bold;
+  size:70px;
+}
+
+
+details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.api-details {
+  background-color: #f7fafc;
+  box-shadow: 0 0  rgba(0, 0, 0, 0.1);
+}
+
+.api-details-title {
+  color: #051f92;
+}
+
+.api-info {
+  margin-top: 20px;
+}
+
+.api-info p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.api-info-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.api-info-label {
+  font-weight: bold;
+  color: #333;
+}
+h4{
+  font-weight: bold;
+}
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #343a40;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border-radius: 5px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  box-shadow: 0 0 5px #28a745;
+  border-color: #28a745;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}
+
+.valid-feedback {
+  color: #28a745;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+@media print {
+  .print {
+    display: none;
+  }
+}
+.a{
+  margin-left:350px;
+}

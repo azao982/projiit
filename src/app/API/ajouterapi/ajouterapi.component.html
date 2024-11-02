@@ -1,0 +1,221 @@
+<form [formGroup]="apiForm" class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header text-center bg-primary text-white">
+      <h2 class="mb-0">
+        <i class="fas fa-plus-circle" style="color:rgb(255, 255, 255);"></i> Ajouter API
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <div class="form-group">
+        <label for="nom">Nom:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-signature"></i></span>
+          </div>
+          <input type="text" class="form-control" id="nom" formControlName='nom' name="nom" placeholder="Entrez votre nom ici" required
+          [ngClass]="{'is-invalid': apiForm.get('nom').invalid && apiForm.get('nom').touched}">
+          <div *ngIf="apiForm.get('nom').invalid && apiForm.get('nom').touched" class="invalid-feedback">
+              <h5> Le nom doit contenir au minimum 3 caractéres et ne doit pas être vide.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="code">Code:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-code"></i></span>
+          </div>
+          <input type="text" class="form-control" id="code" formControlName="code" name="code" placeholder="Entrez le code ici" required
+          [ngClass]="{'is-invalid': apiForm.get('code').invalid && apiForm.get('code').touched}">
+          <div *ngIf="apiForm.get('code').invalid && apiForm.get('code').touched" class="invalid-feedback">
+              <h5> Le code ne doit pas être vide.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-info-circle"></i></span>
+          </div>
+          <input type="text" class="form-control" id="description" formControlName="description" name="description" placeholder="Entrez la description ici" required
+          [ngClass]="{'is-invalid': apiForm.get('description').invalid && apiForm.get('description').touched}">
+          <div *ngIf="apiForm.get('description').invalid && apiForm.get('description').touched" class="invalid-feedback">
+              <h5> La description ne doit pas être vide.
+                Elle doit contenir au moins 10 caractères.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="input">Input:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-arrow-right"></i></span>
+          </div>
+          <input type="text" class="form-control" id="input" formControlName="input" name="input" placeholder="Entrez l'input ici" required
+          [ngClass]="{'is-invalid': apiForm.get('input').invalid && apiForm.get('input').touched}">
+          <div *ngIf="apiForm.get('input').invalid && apiForm.get('input').touched" class="invalid-feedback">
+              <h5> L'input ne doit pas être vide.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="output">Output:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-arrow-left"></i></span>
+          </div>
+          <input type="text" class="form-control" id="output" formControlName="output" name="output" placeholder="Entrez l'output ici" required
+          [ngClass]="{'is-invalid': apiForm.get('output').invalid && apiForm.get('output').touched}">
+          <div *ngIf="apiForm.get('output').invalid && apiForm.get('output').touched" class="invalid-feedback">
+              <h5> L'output ne doit pas être vide.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cadreUtilisation">Cadre d'Utilisation:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-tasks"></i></span>
+          </div>
+          <input type="text" class="form-control" id="cadreUtilisation" formControlName="cadreUtilisation" name="cadreUtilisation" placeholder="Entrez le cadre d'utilisation ici" required
+          [ngClass]="{'is-invalid': apiForm.get('cadreUtilisation').invalid && apiForm.get('cadreUtilisation').touched}">
+          <div *ngIf="apiForm.get('cadreUtilisation').invalid && apiForm.get('cadreUtilisation').touched" class="invalid-feedback">
+              <h5> Le cadre d'utilisation ne doit pas être vide.
+                Il doit contenir au moins 10 caractères.</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="url">Url:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-link"></i></span>
+          </div>
+          <input type="text" class="form-control" id="url" formControlName="url" name="url" placeholder="Entrez l'URL ici" required
+          [ngClass]="{'is-invalid': apiForm.get('url').invalid && apiForm.get('url').touched}">
+          <div *ngIf="apiForm.get('url').invalid && apiForm.get('url').touched" class="invalid-feedback">
+              <h5> L'url ne doit pas être vide.
+                </h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mode">Mode :</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-cogs"></i></span>
+          </div>
+          <select class="form-control" id="mode" formControlName="mode" name="mode" required
+          [ngClass]="{'is-invalid': apiForm.get('mode').invalid && apiForm.get('mode').touched}">
+              <option value="" disabled selected>Choisir le mode</option>
+              <option value="prod">prod</option>
+              <option value="preprod">preprod</option>
+          </select>
+        </div>
+        <div *ngIf="apiForm.get('mode').invalid && apiForm.get('mode').touched" class="invalid-feedback">
+          <h5> Le mode ne doit pas être vide.</h5>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="methode">Méthode :</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-handshake"></i></span>
+          </div>
+          <select class="form-control" id="methode" formControlName="methode" name="methode" required
+          [ngClass]="{'is-invalid': apiForm.get('methode').invalid && apiForm.get('methode').touched}">
+              <option value="" disabled selected>Choisir la méthode</option>
+              <option value="get">get</option>
+              <option value="post">post</option>
+          </select>
+        </div>
+        <div *ngIf="apiForm.get('methode').invalid && apiForm.get('methode').touched" class="invalid-feedback">
+          <h5> La méthode ne doit pas être vide.</h5>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="impact">Impact:</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-exclamation"></i></span>
+          </div>
+          <input type="text" class="form-control" id="impact" formControlName='impact' name="impact"placeholder="Entrez l'impact ici" required
+          [ngClass]="{'is-invalid': apiForm.get('impact').invalid && apiForm.get('impact').touched}">
+          <div *ngIf="apiForm.get('impact').invalid && apiForm.get('impact').touched" class="invalid-feedback">
+              <h5> L'impact ne doit pas être vide.</h5>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="structure">Structure appartenante :</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-building"></i></span>
+          </div>
+          <select class="form-control" id="structure" formControlName="structure" required>
+            <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.nomFr }}</option>
+          </select>
+        </div>
+      </div>
+    <div class="form-group text-center mt-4">
+        <button type="button" class="btn btn-primary btn-lg" (click)="onAjouter()" [disabled]="!apiForm.valid">
+          <i class="fas fa-plus-circle mr-2"></i> Ajouter
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<br><br>
+
+<style>
+  body {
+    background-image: url('/assets/ba.jpg');
+    background-size: cover;
+    justify-items: center;
+    height: 1000px;
+    background-color: rgb(179, 216, 248);
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .form-control {
+    border-radius: 10px;
+  }
+
+  .input-group-text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+  }
+
+  .card-header {
+    border-radius: 15px 15px 0 0;
+  }
+
+  .card-body {
+    padding: 2rem;
+  }
+
+  .btn {
+    border-radius: 15px;
+    width: 130px;
+    height: 50px;
+  }
+</style>

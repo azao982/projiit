@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<div class="container mt-4"> <!-- Ajout du container -->
+  <div class="card custom-card"> <!-- Ajout de la classe card et custom-card -->
+    <header class="mb-4">
+      <h2 class="text-center api-title"><i class="fas fa-list-alt"></i> Liste des API</h2>
+    </header>
+
+    <div class="search-container mb-3 d-flex justify-content-center">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-primary mr-2 p" (click)="ajouterNouvelleApi()"><i class="fa fa-plus-circle"></i> Ajouter nouvelle Api</button>
+
+        <div class="az mr-2">
+          <button class="btn btn-danger mr-2 m" type="text" #searchInput (click)="trierApi(searchInput.value)"><i class="fa fa-filter"></i> Trier</button>
+        </div>
+
+        <div class="mr-2 n">
+          <input type="text" id="searchInput" [(ngModel)]="searchKeyword" class="form-control" placeholder="Rechercher..." />
+        </div>
+
+        <div>
+          <button class="btn btn-warning search-button"(click)="searchApi()"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="table-responsive"> <!-- Modification de la classe -->
+      <table class="table manage-candidates-top mb-0">
+        <!-- Table header -->
+        <thead>
+          <tr>
+            <th class="text-center"><i class="fas fa-file-signature"></i> Nom</th>
+            <th class="text-center"><i class="fas fa-code"></i> Code</th>
+            <th class="text-center"><i class="fas fa-keyboard"></i> Input</th>
+            <th class="text-center"><i class="fas fa-desktop"></i> Output</th>
+            <th class="text-center"><i class="fas fa-desktop"></i> Structure</th>
+            <th class="text-right"><i class="fas fa-cogs"></i> Actions</th>
+          </tr>
+        </thead>
+
+        <!-- Table body -->
+        <tbody>
+          <!-- Utilisation de ngFor pour afficher les données -->
+          <ng-container *ngFor="let api of (searchResults.length ? searchResults : apis); let i = index">
+            <tr class="candidates-list">
+              <!-- Nom -->
+              <td class="title">{{ api.nom }}</td>
+              <!-- Code -->
+              <td class="text-center">{{ api.code }}</td>
+              <!-- Input -->
+              <td class="text-center">{{ api.input }}</td>
+              <!-- Output -->
+              <td class="text-center">{{ api.output}}</td>
+              <td class="text-center">{{ api.structure.nomFr}}</td>
+
+              <!-- Actions -->
+              <td class="text-right">
+                <div class="btn-group">
+                  <i class="fas fa-search-plus text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showDetails(api)" style="margin-right: 10px; font-size: 25px; font-weight: bold;"></i>
+                  <i class="fas fa-edit text-warning" (click)="redirigerVersPagemodifier(api.idApi)" style="margin-right: 10px;  font-size: 25px ;font-weight: bold;"></i>
+                  <i class="fas fa-trash-alt text-danger" (click)="supprimerApi(api.idApi)" style="font-weight: bold;font-size: 25px;"></i>
+              </div>
+
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body custom-card">
+                <app-detailsapi [selectedApi]="selectedApi" class="details-section"></app-detailsapi>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+
+</div>

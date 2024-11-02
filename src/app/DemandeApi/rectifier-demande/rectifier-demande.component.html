@@ -1,0 +1,141 @@
+<div class="container-xl px-4 mt-4">
+  <!-- Account page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link active ms-0" href="/DashboardConsommateur">Profile</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+  <div class="row">
+    <div class="col-xl-4">
+      <!-- Profile picture card-->
+      <div class="card mb-4 mb-xl-0">
+        <div class="card-header b">{{demande.nomapp}}</div>
+        <div class="card-body text-center">
+          <!-- Profile picture image-->
+          <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+          <!-- Profile picture help block-->
+          <div class="small font-italic text-muted mb-4"></div>
+          <!-- Profile picture upload button-->
+          <button class="btn btn-primary" type="button">Changer Image</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <!-- Account details card-->
+      <div class="container">
+        <h1 style="text-align: center;">Réctifier ma demande</h1>
+        <form (ngSubmit)="modifierDemande()" method="post">
+          <!-- Form Group (ID de la demande) -->
+
+          <!-- Form Row -->
+          <div class="row gx-3 mb-3">
+            <!-- Form Group (Description) -->
+            <div class="form-group">
+              <label><i class="fas fa-file-alt"></i> Description :</label>
+              <input class="form-control" type="text" id="description" name="description" [(ngModel)]="demande.description" required>
+              <br>
+            </div>
+            <!-- Form Group (Référence) -->
+            <div class="form-group">
+              <label><i class="fas fa-info-circle"></i> Référence :</label>
+              <input class="form-control" type="text" id="reference" name="reference" [(ngModel)]="demande.reference" required>
+            </div>
+          </div>
+          <!-- Form Row -->
+          <div class="row gx-3 mb-3">
+            <!-- Form Group (Nom de l'Application) -->
+            <div class="form-group">
+              <label><i class="fas fa-cube"></i> Nom de l'Application :</label>
+              <input class="form-control" type="text" id="nomapp" name="nomapp" [(ngModel)]="demande.nomapp" required>
+              <br>
+            </div>
+            <!-- Form Group (Hébergeur de l'Application) -->
+            <div class="form-group">
+              <label><i class="fas fa-server"></i> Hébergeur de l'Application :</label>
+              <input class="form-control" type="text" id="hebergeurapp" name="hebergeurapp" [(ngModel)]="demande.hebergeurapp" required>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-check-square"></i> Publié :</label>
+            <input class="form-check-input" type="checkbox" id="publie" name="publie" [(ngModel)]="demande.publie">
+            <br>
+            <br>
+          </div>
+          <!-- Form Row -->
+          <div class="row gx-3 mb-3">
+            <div class="form-group">
+              <label><i class="fas fa-globe"></i> Nom de domaine de l'Application :</label>
+              <input class="form-control" type="text" id="nomdomaineapp" name="nomdomaineapp" [(ngModel)]="demande.nomdomaineapp" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-network-wired"></i> Adresse IP de l'Application :</label>
+              <input class="form-control" type="text" id="adresseipapp" name="adresseipapp" [(ngModel)]="demande.adresseipapp" required>
+            </div>
+          </div>
+          <!-- Form Group (Type de connexion) -->
+          <div class="form-group">
+            <label><i class="fas fa-link"></i> Type de connexion :</label>
+            <input class="form-control" type="text" id="typeconnexion" name="typeconnexion" [(ngModel)]="demande.typeconnexion" required>
+            <br>
+          </div>
+          <!-- Form Group (Nombre d'appels par an) -->
+          <div class="form-group">
+            <label><i class="fas fa-phone-volume"></i> Nombre d'appels par an :</label>
+            <input class="form-control" type="number" id="nombreappelan" name="nombreappelan" [(ngModel)]="demande.nombreappelan" required>
+            <br>
+          </div>
+          <!-- Form Group (Nombre d'appels par minute) -->
+          <div class="form-group">
+            <label><i class="fas fa-phone-square-alt"></i> Nombre d'appels par minute :</label>
+            <input class="form-control" type="number" id="nombreappelmin" name="nombreappelmin" [(ngModel)]="demande.nombreappelmin" required>
+            <br>
+          </div>
+          <!-- Form Group (Facturation en masse) -->
+          <div class="form-group">
+            <label><i class="fas fa-money-bill-wave"></i> Facturation en masse :</label>
+
+            <input class="form-check-input" type="checkbox" id="invomasse" name="invomasse" [(ngModel)]="demande.invomasse">
+            <br>
+            <br>
+          </div>
+          <!-- Form Group (Pays de l'hébergeur) -->
+          <div class="form-group">
+            <label><i class="fas fa-globe-americas"></i> Pays de l'hébergeur :</label>
+            <input class="form-control" type="text" id="payshebergeur" name="payshebergeur" [(ngModel)]="demande.payshebergeur" required>
+            <br>
+          </div>
+          <!-- Form Group (Date d'invoication en masse) -->
+          <div class="form-group">
+            <label><i class="fas fa-calendar-day"></i> Date d'invoication en masse :</label>
+            <input class="form-control" type="date" id="dateinvmasse" name="dateinvmasse" [(ngModel)]="demande.dateinvmasse" required>
+            <br>
+          </div>
+          <!-- Form Group (Raison de l'invoication en masse) -->
+          <div class="form-group">
+            <label><i class="fas fa-comment"></i> Raison de l'invoication en masse :</label>
+            <input class="form-control" type="text" id="raisoninmasse" name="raisoninmasse" [(ngModel)]="demande.raisoninmasse" required>
+            <br>
+          </div>
+          <!-- Form Group (Date de création) -->
+          <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> Date de création :</label>
+            <input class="form-control" type="date" id="datecreation" name="datecreation" [(ngModel)]="demande.datecreation" required readonly>
+            <br>
+          </div>
+          <!-- Form Group (Date de modification) -->
+          <div class="form-group">
+            <label><i class="fas fa-calendar-check"></i> Date de modification :</label>
+            <input class="form-control" type="date" id="datemodification" name="datemodification" [(ngModel)]="demande.datemodification" required>
+            <br>
+          </div>
+          <br>
+          <!-- Save changes button-->
+          <button class="btn btn-dark z" type="submit">Réctifier demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

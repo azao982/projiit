@@ -1,0 +1,20 @@
+
+.bg{
+  background-color: rgb(243, 224, 185);
+}
+label{
+  font-weight: bold;
+  font-size: 18px;
+  font-family:cursive;
+}
+.t{
+  width: 150px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+div{
+  border-radius: 25px;
+  padding-top: 30px;
+}

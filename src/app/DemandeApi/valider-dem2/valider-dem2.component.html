@@ -1,0 +1,229 @@
+<div class="container-xl px-4 mt-4">
+  <!-- Account page navigation-->
+  <hr class="mt-0 mb-4">
+  <div class="row">
+    <div class="col-xl-4">
+      <!-- Profile picture card-->
+      <div class="card mb-4 mb-xl-0" style="background-color: #f8f9fa;">
+        <div class="card-header b" style="background-color: #f55252; color: #ffffff;">{{demande.nomapp}}</div>
+        <div class="card-body text-center">
+          <!-- Profile picture image-->
+          <img class="img-account-profile rounded-circle mb-2" src="/assets/valid2.jpg" alt="">
+          <!-- Profile picture help block-->
+          <div class="small font-italic text-muted mb-4"></div>
+          <!-- Profile picture upload button-->
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <!-- Account details card-->
+      <div class="card" style="background-color: #f8f9fa;">
+        <div class="card-body">
+          <h2 style="text-align: center;"><i class="fas fa-check-circle"></i> Valider demande 2 éme Niveau</h2>
+          <br><br>
+          <form (ngSubmit)="accepterDemande()" method="post">
+            <div class="row">
+              <!-- Form Group (Description) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-file-alt"></i> Description :</label>
+                  <input class="form-control" type="text" id="description" name="description" [(ngModel)]="demande.description" required readonly>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Référence) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-info-circle"></i> Référence :</label>
+                  <input class="form-control" type="text" id="reference" name="reference" [(ngModel)]="demande.reference" required readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Nom de l'Application) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-cube"></i> Nom de l'Application :</label>
+                  <input class="form-control" type="text" id="nomapp" name="nomapp" [(ngModel)]="demande.nomapp" required readonly>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Hébergeur de l'Application) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-server"></i> Hébergeur de l'Application :</label>
+                  <input class="form-control" type="text" id="hebergeurapp" name="hebergeurapp" [(ngModel)]="demande.hebergeurapp" required readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Publié) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-check-square"></i> Publié :</label>
+                  <input class="form-check-input" type="checkbox" id="publie" name="publie" [(ngModel)]="demande.publie" disabled required>
+                  <br>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Nom de domaine de l'Application) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-globe"></i> Nom de domaine de l'Application :</label>
+                  <input class="form-control" type="text" id="nomdomaineapp" name="nomdomaineapp" [(ngModel)]="demande.nomdomaineapp" required readonly>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Adresse IP de l'Application) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-network-wired"></i> Adresse IP de l'Application :</label>
+                  <input class="form-control" type="text" id="adresseipapp" name="adresseipapp" [(ngModel)]="demande.adresseipapp" required readonly>
+                </div>
+              </div>
+              <!-- Form Group (Type de connexion) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-link"></i> Type de connexion :</label>
+                  <input class="form-control" type="text" id="typeconnexion" name="typeconnexion" [(ngModel)]="demande.typeconnexion" required readonly>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Nombre d'appels par an) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-phone-volume"></i> Nombre d'appels par an :</label>
+                  <input class="form-control" type="number" id="nombreappelan" name="nombreappelan" [(ngModel)]="demande.nombreappelan" required readonly>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Nombre d'appels par minute) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-phone-square-alt"></i> Nombre d'appels par minute :</label>
+                  <input class="form-control" type="number" id="nombreappelmin" name="nombreappelmin" [(ngModel)]="demande.nombreappelmin" required readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Facturation en masse) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-money-bill-wave"></i> Invoqué en masse :</label>
+                  <input class="form-check-input" type="checkbox" id="invomasse" name="invomasse" [(ngModel)]="demande.invomasse" disabled required>
+                  <br>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Pays de l'hébergeur) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-globe-americas"></i> Pays de l'hébergeur :</label>
+                  <input class="form-control" type="text" id="payshebergeur" name="payshebergeur" [(ngModel)]="demande.payshebergeur" required readonly>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Date d'invoication en masse) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-calendar-day"></i> Date d'invoication en masse :</label>
+                  <input class="form-control" type="date" id="dateinvmasse" name="dateinvmasse" [(ngModel)]="demande.dateinvmasse" required readonly>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Raison de l'invoication en masse) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-comment"></i> Raison de l'invoication en masse :</label>
+                  <input class="form-control" type="text" id="raisoninmasse" name="raisoninmasse" [(ngModel)]="demande.raisoninmasse" required readonly>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Date de création) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-calendar-alt"></i> Date de création :</label>
+                  <input class="form-control" type="date" id="datecreation" name="datecreation" [(ngModel)]="demande.datecreation" required readonly>
+                  <br>
+                </div>
+              </div>
+              <!-- Form Group (Date de modification) -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-calendar-check"></i> Date de modification :</label>
+                  <input class="form-control" type="date" id="datemodification" name="datemodification" [(ngModel)]="demande.datemodification" required readonly>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Form Group (Statut) -->
+              <div class="form-group">
+                <label for="statut"><i class="fas fa-check-circle"></i> Statut</label>
+                <select class="form-control" id="statut" name="statut" [(ngModel)]="demande.statut">
+                  <option *ngFor="let status of statusOptions" [value]="status" [selected]="status === 'en_cours_1ere_validation'">{{status}}</option>
+                </select>
+                <br>
+              </div>
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-dark" type="submit" [disabled]="demande.statut === 'refusée' || demande.statut === 'en_cours_1ere_validation'">
+                  <i class="fas fa-check-circle"></i> Accepter demande
+                </button>
+                <button class="btn btn-danger" type="button" (click)="refuserDemande()" [disabled]="demande.statut === 'en_cours_1ere_validation' || demande.statut === 'terminée'">
+                  <i class="fas fa-edit"></i> Refuser demande
+                </button>
+                <a href="/demandeEnCours1ereValid" class="btn btn-danger">
+                  <i class="fas fa-times-circle"></i> Annuler
+                </a>
+              </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<!-- Formulaire d'envoi d'email (modal) -->
+<div class="modal fade" id="user-form-modal" tabindex="-1" aria-labelledby="user-form-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="user-form-modal-label"><i class="fas fa-envelope"></i> Ajouter un mail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="mailForm">
+          <div class="form-group">
+            <label for="toEmail"><i class="fas fa-user"></i> Destinataire</label>
+            <input class="form-control" type="email" id="toEmail" formControlName="toEmail" required placeholder="Destinataire">
+          </div>
+          <div class="form-group">
+            <label for="subject"><i class="fas fa-calendar-alt"></i> Objet</label>
+            <input class="form-control" id="subject" formControlName="subject" required placeholder="Objet">
+          </div>
+          <div class="form-group">
+            <label for="body"><i class="fas fa-comment-alt"></i> Message</label>
+            <textarea class="form-control" id="body" formControlName="body" style="height: 130px;" required placeholder="Message"></textarea>
+          </div>
+          <br><br>
+          <button type="button" (click)="onEnvoyerMail()" class="btn btn-primary k">
+            <i class="fas fa-paper-plane"></i><strong> Envoyer Mail</strong>
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

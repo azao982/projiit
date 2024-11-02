@@ -1,0 +1,72 @@
+<div class="container">
+  <h2 class="title">Ajouter une Nouvelle Structure</h2>
+  <form [formGroup]="structureForm" class="form-container">
+
+    <div class="form-group">
+        <label for ="code">
+          <mat-icon class="icon">code</mat-icon> Code
+        </label>
+        <input id="code" formControlName="code" matInput type="text" />
+        <mat-error *ngIf="structureForm.get('code').hasError('required')">
+          Le code est requis.
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <label for ="email">
+          <mat-icon class="icon">email</mat-icon> Email
+        </label>
+        <input id="email" formControlName="email" matInput type="email" />
+        <mat-error *ngIf="structureForm.get('email').hasError('required')">
+          L'email est requis.
+        </mat-error>
+        <mat-error *ngIf="structureForm.get('email').hasError('email')">
+          Format d'email invalide.
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <label for ="telStr">
+          <mat-icon class="icon">phone</mat-icon> Téléphone
+        </label>
+        <input matInput id="telStr" formControlName="telStr" type="text" />
+        <mat-error *ngIf="structureForm.get('telStr').hasError('required')">
+          Le téléphone est requis.
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <label for ="adresse">
+          <mat-icon class="icon">home</mat-icon> Adresse
+        </label>
+        <input  id="adresse" formControlName="adresse" matInput type="text" />
+        <mat-error *ngIf="structureForm.get('adresse').hasError('required')">
+          L'adresse est requise.
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <label for="nomFr">
+          <mat-icon class="icon">person</mat-icon> Nom Français
+        </label>
+        <input name="nomFr" id="nomFr" formControlName="nomFr" matInput type="text" />
+        <mat-error *ngIf="structureForm.get('nomFr').hasError('required')">
+          Le nom français est requis.
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <label for ="type">
+          <mat-icon class="icon">category</mat-icon> Type
+        </label>
+        <input id="type" formControlName="type" matInput type="text" />
+        <mat-error *ngIf="structureForm.get('type').hasError('required')">
+          Le type est requis.
+        </mat-error>
+    </div>
+
+    <button mat-raised-button color="primary" type="button" (click)="confirmerAjout()" class="btn">
+      <mat-icon class="icon">add</mat-icon> Ajouter
+    </button>
+  </form>
+</div>

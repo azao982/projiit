@@ -1,0 +1,122 @@
+<style>
+  .api-details-container {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .api-details {
+    font-family: cursive;
+    color: #131212;
+  }
+  .api-details-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #272626;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-family: cursive;
+    /* Ajout de soulignement */
+  }
+  .api-details-title i {
+    margin-right: 10px;
+    color: #4f4f50;
+  }
+  .api-info {
+    font-size: 16px;
+  }
+  .api-info-label {
+    font-weight: bold;
+    color: #777;
+  }
+  /* Couleurs de fond différentes pour chaque carte */
+  .api-card:nth-child(1) {
+    background-color: #f9f9f9;
+  }
+  .api-card:nth-child(2) {
+    background-color: #a9f895;
+  }
+  .api-card:nth-child(3) {
+    background-color: #f6fd9550;
+  }
+  .api-card:nth-child(4) {
+    background-color: #fdfcae;
+  }
+  .api-card:nth-child(5) {
+    background-color: #f6bcfd;
+  }
+  .api-card:nth-child(6) {
+    background-color: #b3f6ff;
+  }
+  .api-card:nth-child(7) {
+    background-color: #ebe7e7;
+  }
+  .api-card:nth-child(8) {
+    background-color: #b1bef7;
+  }
+  .api-card:nth-child(9) {
+    background-color: #faa9a9;
+  }
+  .api-card:nth-child(10) {
+    background-color: #fac9a8;
+  }
+  .api-card:nth-child(11) {
+    background-color: #b9f7f1;
+  }
+  .api-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  .api-card:hover {
+    background-color: #f0f0f0; /* Couleur de fond de la carte au survol */
+  }
+  .api-card-icon {
+    color: #9ba0a5;
+    margin-right: 10px;
+  }
+</style>
+
+<div *ngIf="selectedApi" class="api-details-container">
+  <div class="api-details">
+    <h4 class="api-details-title"><i class="fas fa-info-circle"></i> Détails d'un API</h4>
+    <div class="api-card">
+      <p><i class="fas fa-file-pdf api-card-icon"></i> <span class="api-info-label">Nom de l'API :</span> {{ selectedApi.nom }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-file-code api-card-icon"></i> <span class="api-info-label">Code de l'API :</span> {{ selectedApi.code }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-info api-card-icon"></i> <span class="api-info-label">Description de l'API :</span> {{ selectedApi.description }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-file-alt api-card-icon"></i> <span class="api-info-label">Input de l'API :</span> {{ selectedApi.input }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-file-export api-card-icon"></i> <span class="api-info-label">Output de l'API :</span> {{ selectedApi.output }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-briefcase api-card-icon"></i> <span class="api-info-label">Cadre d'utilisation de l'API :</span> {{ selectedApi.cadreUtilisation }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-link api-card-icon"></i> <span class="api-info-label">URL de l'API :</span> {{ selectedApi.url }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-cogs api-card-icon"></i> <span class="api-info-label">Mode de l'API :</span> {{ selectedApi.mode }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-network-wired api-card-icon"></i> <span class="api-info-label">Méthode de l'API :</span> {{ selectedApi.methode }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-exclamation-triangle api-card-icon"></i> <span class="api-info-label">Impact de l'API :</span> {{ selectedApi.impact }}</p>
+    </div>
+    <div class="api-card">
+      <p><i class="fas fa-exclamation-triangle api-card-icon"></i> <span class="api-info-label">Structure de l'API :</span> {{ selectedApi.structure.nomFr}}</p>
+    </div>
+  </div>
+</div>

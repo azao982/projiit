@@ -1,0 +1,185 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+  <br>
+  <h2 style="color:rgb(14, 21, 24); text-align:center;"><i class="fa fa-list"></i> Liste des admins délégués</h2>
+
+  <div class="row">
+    <div class="text-right">
+      <button class="btn btn-info btn-block" type="button" data-bs-toggle="modal" data-bs-target="#user-form-modal" (click)="onAjouter()">
+        <i class="fa fa-add"></i> Nouvel Admin Délégué
+      </button>
+    </div>
+  </div><br>
+
+  <div class="row">
+    <div *ngFor="let user of users" class="col-md-6 col-lg-4 mb-3">
+      <div class="card">
+        <div class="p-4">
+          <div class="d-flex flex-row">
+            <div class=""><img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="user" class="rounded-circle" width="100" /></div>
+            <div class="pl-4 user">
+              <h3>{{user.nom}}</h3>
+              <h6>{{user.email}}</h6>
+              <button class="btn btn-info btn-rounded text-white text-uppercase font-14" (click)="detailUser(user.idUser)"><i class="fa fa-circle-info mr-2"></i> Plus d'infos</button>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col border-right text-center">
+              <h2 class="font-light" style="color:rgb(104, 102, 234);" (click)="modifierUser(user.idUser)"><i class="fa fa-edit"></i></h2>
+              <h4 class="text-uppercase">Modifier</h4>
+            </div>
+
+            <div class="col text-center">
+              <h4 class="font-light" style="color:red;" (click)="supprimerUser(user.idUser)"><i class="fa fa-trash"></i></h4>
+              <h4 class="text-uppercase">Supprimer</h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body border-top">
+          <p class="text-center aboutscroll">
+            {{user.nom}} {{user.prenom}} est {{user.fonction}} {{user.grade}}. Son cin est {{user.cin}}.
+            Son num mobile est : {{user.mobile}}
+          </p>
+          <hr />
+          <h4 class="font-medium text-center mt-4"></h4>
+          <ul class="list-style-none list-icons d-flex flex-item text-center pt-2">
+            <li class="col px-2">
+              <a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="Shaina Chhatraliya">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="rounded-circle" width="50" />
+              </a>
+            </li>
+            <li class="col px-2">
+              <a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="Nirav Joshi">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" class="rounded-circle" width="50" />
+              </a>
+            </li>
+            <li class="col px-2">
+              <a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="Vishal Bhatt">
+                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" class="rounded-circle" width="50" />
+              </a>
+            </li>
+            <li class="col px-2">
+              <a href="javascript:void(0)" data-toggle="tooltip" title="" data-original-title="More">
+                <button class="btn btn-circle btn-info text-white btn-lg" href="javascript:void(0)">
+                  5+
+                </button>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body border-top">
+          <ul class="list-style-none list-icons d-flex flex-item text-center">
+            <li class="col">
+              <a href="http://www.google.com" class="text-muted" ><i class="fa fa-globe font-20"></i></a>
+            </li>
+            <li class="col">
+              <a href="http://www.twitter.com" class="text-muted"><i class="fa fa-twitter font-20"></i></a>
+            </li>
+            <li class="col">
+              <a href="http://www.facebook.com" class="text-muted"><i class="fa fa-facebook-square font-20"></i></a>
+            </li>
+            <li class="col">
+              <a href="http://www.youtube.com" class="text-muted"><i class="fa fa-youtube font-20"></i></a>
+            </li>
+            <li class="col">
+              <a href="http://www.linkedIn.com" class="text-muted"><i class="fa fa-linkedin font-20"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- Votre code de modal ici -->
+
+        <!-- User Form Modal -->
+<div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal" aria-labelledby="user-form-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fa fa-user-plus"></i> Nouvel admin </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="userForm">
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="nom"><i class="fa fa-user"></i> Nom</label>
+              <input class="form-control" type="text" id="nom" formControlName="nom" required>
+            </div>
+            <div class="col">
+              <label for="prenom"><i class="fa fa-user"></i> Prénom</label>
+              <input class="form-control" type="text" formControlName="prenom" id="prenom" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="email"><i class="fa fa-envelope"></i> Email</label>
+              <input class="form-control" type="email" id="email" formControlName="email" required>
+            </div>
+            <div class="col">
+              <label for="password"><i class="fa fa-lock"></i> Password</label>
+              <input class="form-control" type="password" id="password" formControlName="password" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="cin"><i class="fa fa-id-card"></i> CIN</label>
+              <input class="form-control" type="text" id="cin" formControlName="cin" required>
+            </div>
+            <div class="col">
+              <label for="grade"><i class="fa fa-graduation-cap"></i> Grade</label>
+              <input class="form-control" type="text" id="grade" formControlName="grade" placeholder="Ingénieur / Technicien / Ouvrier ..." required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="cnrps"><i class="fa fa-id-card"></i> CNRPS</label>
+              <input class="form-control" type="text" id="cnrps" formControlName="cnrps" required>
+            </div>
+
+            <div class="col">
+              <label for="fonction"><i class="fa fa-cog"></i> Fonction</label>
+              <input class="form-control" type="text" id="fonction" formControlName="fonction" required>
+            </div>
+
+          </div>
+
+          <div class="row mb-3">
+
+            <div class="col">
+              <label for="profile"><i class="fa fa-user"></i> Profile</label>
+              <select class="form-control" id="profile" formControlName="profile" value="admin_delegue">
+                <option value="admin_delegue" selected>Admin Délégué</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="mobile"><i class="fa fa-mobile"></i> Mobile</label>
+              <input class="form-control" type="text" id="mobile" formControlName="mobile" required>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="button" (click)="onAjouter()" class="btn btn-primary" [disabled]="formulaire">
+              <i class="fa fa-save"></i> Enregistrer
+            </button>
+          </div>
+        </form>
+
+      </div>
+
+      <!--closing footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

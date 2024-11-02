@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de Consommation de l'API</title>
+    <!-- Include Bootstrap CSS files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            border-color: #031d09;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #218838;
+            border-color: #215f2e;
+        }
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #343a40;
+            transition: all 0.3s ease;
+        }
+        .form-group input {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            box-shadow: 0 0 5px #28a745;
+            border-color: #28a745;
+        }
+        .form-group i {
+            color: #6c757d;
+            margin-right: 10px;
+        }
+        .form-group .invalid-feedback {
+            color: #dc3545;
+        }
+        .form-group .valid-feedback {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4 text-center"><i class="fas fa-plus-circle" style="color: black;"></i> Demande de consommation de l'API</h2>
+    <div class="form-container">
+
+      <form [formGroup]="demandeForm">
+            <!-- Informations sur l'API demandée -->
+            <h4 style="color: rgb(15, 23, 3)"><i class="fas fa-info-circle"></i> Informations sur l'API demandée :</h4>
+            <br>
+            <!-- Détails de l'API -->
+            <div *ngIf="selectedApi" class="api-details-container">
+                <div class="api-details">
+                    <div class="api-info">
+                        <div>
+                            <p><i class="fas fa-file-pdf"> </i> <span>Nom de l'API :</span>
+                             </p>{{ selectedApi.nom }}
+                        </div>
+                        <div>
+                            <p><i class="fas fa-info"> </i> <span>Description de l'API :</span>
+                            </p>{{ selectedApi.description }}
+                        </div>
+                        <div>
+                            <p><i class="fas fa-file-alt"></i> <span>Données de l'entrée :</span>
+                             </p>{{ selectedApi.input }}
+                        </div>
+                        <div>
+                            <p><i class="fas fa-file-export"></i> <span>Données de sortie :</span>
+                            </p>{{ selectedApi.output }}
+                        </div>
+                        <div>
+                            <p><i class="fas fa-briefcase"></i> <span>Cadre d'utilisation de l'API :</span>
+                            </p> {{ selectedApi.cadreUtilisation }}
+                        </div>
+                        <div class="form-group">
+                            <p><i class="fas fa-exclamation-triangle"></i> <span>Impact de l'API :</span>
+                            </p> {{ selectedApi.impact }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- Informations sur l'application consommant l'API -->
+            <h4 style="color: rgb(22, 32, 8)"><i class="fas fa-server"></i> Informations sur l'application consommant l'API (*) :</h4>
+            <br>
+            <!-- Hébergeur de l'application -->
+            <div class="form-group">
+                <label for="hebergeurapp"><i class="fas fa-server"></i> Hébergeur de l'application :</label>
+                <input type="text" class="form-control" id="hebergeurapp" name="hebergeurapp" placeholder="Hébergeur" formControlName='hebergeurapp' required [ngClass]="{'is-invalid': demandeForm.get('hebergeurapp').invalid && demandeForm.get('hebergeurapp').touched}">
+                <div *ngIf="demandeForm.get('hebergeurapp').invalid && demandeForm.get('hebergeurapp').touched" class="invalid-feedback">
+                    <h5>L'hébergeur ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="payshebergeur"><i class="fas fa-globe"></i> Pays de l'hébergeur:</label>
+              <input type="text" class="form-control" id="payshebergeur" name="payshebergeur" placeholder="Pays de l'hébergeur" formControlName='payshebergeur' required
+              [ngClass]="{'is-invalid': demandeForm.get('payshebergeur').invalid && (demandeForm.get('payshebergeur').touched || demandeForm.get('payshebergeur').dirty)}">
+              <!-- Afficher le message d'erreur -->
+              <div *ngIf="demandeForm.get('payshebergeur').invalid && (demandeForm.get('payshebergeur').touched || demandeForm.get('payshebergeur').dirty)" class="invalid-feedback">
+                  <h5>Le pays de l'hébergeur  ne doit pas être vide.</h5>
+              </div>
+
+          </div>
+          <div class="form-group">
+            <label for="publie"><i class="fas fa-globe"></i> Publié:</label>
+            <input type="checkbox" class="form-check-input custom-checkbox v" id="publie" name="publie" formControlName="publie" required
+[ngClass]="{'is-invalid': demandeForm.get('publie').invalid && (demandeForm.get('publie').touched || demandeForm.get('publie').dirty)}">
+            <!-- Afficher le message d'erreur -->
+            <div *ngIf="demandeForm.get('publie').invalid && (demandeForm.get('publie').touched || demandeForm.get('publie').dirty)" class="invalid-feedback">
+                <h5>Le publié ne doit pas être vide.</h5>
+            </div>
+        </div>
+            <!-- Nom de domaine de l'application -->
+            <div class="form-group">
+                <label for="nomdomaineapp"><i class="fas fa-link"></i> Nom de domaine de l'Application :</label>
+                <input type="text" class="form-control" id="nomdomaineapp" name="nomdomaineapp" placeholder="Nom de domaine de l'application" formControlName="nomdomaineapp" required [ngClass]="{'is-invalid': demandeForm.get('nomdomaineapp').invalid && demandeForm.get('nomdomaineapp').touched}">
+                <div *ngIf="demandeForm.get('nomdomaineapp').invalid && demandeForm.get('nomdomaineapp').touched" class="invalid-feedback">
+                    <h5>Le nom de domaine de l'application ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Adresse IP de l'application -->
+            <div class="form-group">
+                <label for="adresseipapp"><i class="fas fa-network-wired"></i> Adresse IP de l'Application :</label>
+                <input type="text" class="form-control" id="adresseipapp" name="adresseipapp" placeholder="Adresse IP de l'application" formControlName="adresseipapp" required [ngClass]="{'is-invalid': demandeForm.get('adresseipapp').invalid && demandeForm.get('adresseipapp').touched}">
+                <div *ngIf="demandeForm.get('adresseipapp').invalid && demandeForm.get('adresseipapp').touched" class="invalid-feedback">
+                    <h5>L'adresse IP ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Type de connexion -->
+            <div class="form-group">
+                <label for="typeconnexion"><i class="fas fa-wifi"></i> Type de connexion :</label>
+                <input type="text" class="form-control" id="typeconnexion" name="typeconnexion" placeholder="Type de connexion" formControlName="typeconnexion" required [ngClass]="{'is-invalid': demandeForm.get('typeconnexion').invalid && demandeForm.get('typeconnexion').touched}">
+                <div *ngIf="demandeForm.get('typeconnexion').invalid && demandeForm.get('typeconnexion').touched" class="invalid-feedback">
+                    <h5>Le type de connexion ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <hr>
+            <!-- Type de consommation -->
+            <h4 style="color: rgb(15, 23, 3)"><i class="fas fa-phone-alt"></i> Type de consommation :</h4>
+            <br>
+            <!-- Nombre d'appels par an -->
+            <div class="form-group">
+                <label for="nombreappelan"><i class="fas fa-phone-alt"></i> Nombre d'appels par an :</label>
+                <input type="number" class="form-control" id="nombreappelan" name="nombreappelan" placeholder="Nombre d'appels par an" formControlName="nombreappelan" required [ngClass]="{'is-invalid': demandeForm.get('nombreappelan').invalid && demandeForm.get('nombreappelan').touched}">
+                <div *ngIf="demandeForm.get('nombreappelan').invalid && demandeForm.get('nombreappelan').touched" class="invalid-feedback">
+                    <h5>Le nombre d'appels par an ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Nombre d'appels par minute -->
+            <div class="form-group">
+                <label for="nombreappelmin"><i class="fas fa-phone"></i> Nombre d'appels par minute :</label>
+                <input type="number" class="form-control" id="nombreappelmin" name="nombreappelmin" placeholder="Nombre d'appels par minute" formControlName="nombreappelmin" required [ngClass]="{'is-invalid': demandeForm.get('nombreappelmin').invalid && demandeForm.get('nombreappelmin').touched}">
+                <div *ngIf="demandeForm.get('nombreappelmin').invalid && demandeForm.get('nombreappelmin').touched" class="invalid-feedback">
+                    <h5>Le nombre d'appels par minute ne doit pas être vide.</h5>
+                </div>
+            </div>
+
+            <!-- Invocation par masse -->
+            <div class="form-group">
+                <label for="invomasse"><i class="fas fa-file-invoice-dollar"></i> Invocation par masse :</label>
+                <input type="checkbox" class="form-check-input custom-checkbox b" id="invomasse" name="invomasse" formControlName="invomasse" required>
+                <div *ngIf="demandeForm.get('invomasse').invalid && demandeForm.get('invomasse').touched" class="invalid-feedback">
+                    <h5>L'invocation par masse ne doit pas être vide.</h5>
+                </div>
+            </div>
+
+            <!-- Date d'invocation en masse -->
+            <div class="form-group">
+                <label for="dateinvmasse"><i class="fas fa-calendar-alt"></i> Date d'invocation en masse :</label>
+                <input type="date" class="form-control" id="dateinvmasse" name="dateinvmasse" placeholder="Date d'invocation en masse" formControlName="dateinvmasse" required [ngClass]="{'is-invalid': demandeForm.get('dateinvmasse').invalid && demandeForm.get('dateinvmasse').touched}">
+                <div *ngIf="demandeForm.get('dateinvmasse').invalid && demandeForm.get('dateinvmasse').touched" class="invalid-feedback">
+                    <h5>La date ne doit pas être vide.</h5>
+                </div>
+            </div>
+
+            <!-- Raison de l'invocation en masse -->
+            <div class="form-group">
+                <label for="raisoninmasse"><i class="fas fa-exclamation-circle"></i> Raison de l'invocation en masse :</label>
+                <input type="text" class="form-control" id="raisoninmasse" name="raisoninmasse" placeholder="Raison de l'invocation en masse" formControlName="raisoninmasse" required [ngClass]="{'is-invalid': demandeForm.get('raisoninmasse').invalid && demandeForm.get('raisoninmasse').touched}">
+                <div *ngIf="demandeForm.get('raisoninmasse').invalid && demandeForm.get('raisoninmasse').touched" class="invalid-feedback">
+                    <h5>La raison ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <hr>
+
+            <!-- Informations sur la demande -->
+            <h4 style="color: rgb(15, 23, 3)"><i class="fas fa-key"></i> Informations sur la demande :</h4>
+            <br>
+            <!-- Référence -->
+            <div class="form-group">
+                <label for="reference"><i class="fas fa-key"></i> Référence :</label>
+                <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence" formControlName="reference" required [ngClass]="{'is-invalid': demandeForm.get('reference').invalid && demandeForm.get('reference').touched}">
+                <div *ngIf="demandeForm.get('reference').invalid && demandeForm.get('reference').touched" class="invalid-feedback">
+                    <h5>La référence ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description"><i class="fas fa-pencil-alt"></i> Description :</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Description" formControlName="description" required [ngClass]="{'is-invalid': demandeForm.get('description').invalid && demandeForm.get('description').touched, 'is-valid': demandeForm.get('description').valid}">
+                <div *ngIf="demandeForm.get('description').invalid && demandeForm.get('description').touched" class="invalid-feedback">
+                    <h5>Description doit contenir au moins 8 caractères.</h5>
+                </div>
+                <div *ngIf="demandeForm.get('description').valid" class="valid-feedback">
+                    <h5>Description est valide.</h5>
+                </div>
+            </div>
+            <!-- Nom de l'application -->
+            <div class="form-group">
+                <label for="nomapp"><i class="fas fa-signature"></i> Nom de l'Application :</label>
+                <input type="text" class="form-control" id="nomapp" name="nomapp" placeholder="Nom de l'Application" formControlName="nomapp" required [ngClass]="{'is-invalid': demandeForm.get('nomapp').invalid && demandeForm.get('nomapp').touched}">
+                <div *ngIf="demandeForm.get('nomapp').invalid && demandeForm.get('nomapp').touched" class="invalid-feedback">
+                    <h5>Le nom de l'application ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Date de création -->
+            <div class="form-group">
+                <label for="datecreation"><i class="fas fa-calendar-plus"></i> Date de création :</label>
+                <input type="date" class="form-control" id="datecreation" name="datecreation" formControlName="datecreation" required [ngClass]="{'is-invalid': demandeForm.get('datecreation').invalid && demandeForm.get('datecreation').touched}">
+                <div *ngIf="demandeForm.get('datecreation').invalid && demandeForm.get('datecreation').touched" class="invalid-feedback">
+                    <h5>La date ne doit pas être vide.</h5>
+                </div>
+                <div *ngIf="demandeForm.get('datecreation').invalid && demandeForm.get('datecreation').errors?.['invalidDate']" class="invalid-feedback">
+                    <h5>La date de création doit être ultérieure à la date actuelle.</h5>
+                </div>
+            </div>
+            <!-- Statut -->
+            <div class="form-group">
+
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="statut"><i class="fas fa-check-circle"></i> Statut :</label>
+                        <!-- Affichage conditionnel du champ de statut -->
+                        <select class="form-control" id="statut" name="statut" formControlName="statut" required>
+                            <option value="enCoursConsommateur">en_Cours_Consommateur</option>
+
+                        </select>
+                      </div>
+                    </div>
+
+                <div *ngIf="demandeForm.get('statut').invalid && demandeForm.get('statut').touched" class="invalid-feedback">
+                    <h5>Le statut ne doit pas être vide.</h5>
+                </div>
+            </div>
+            <!-- Boutons d'action -->
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-dark h"><i class="fas fa-reply"></i></button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-dark" (click)="onAjouter()" [disabled]="!demandeForm.valid"><i class="fas fa-check-circle"></i> Ajouter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

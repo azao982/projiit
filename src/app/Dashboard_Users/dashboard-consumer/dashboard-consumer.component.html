@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      /* Styles communs */
+body {
+    font-family: 'Pacifico', cursive;
+    background-color: #d2d5d8;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    padding: 10px 20px;
+    background-color: #f2f2f5;
+    color: white;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.btn-logout {
+    background-color: #bdbbbb;
+    color: rgb(194, 194, 194);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.container {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+}
+
+.card {
+    width: 250px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color:black;
+}
+
+.card-body p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.card-body a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease-in-out;
+    }
+}
+
+/* Autres styles spécifiques aux cartes */
+
+        body {
+            font-family: 'Pacifico', cursive;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+
+            padding: 10px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #ffffff80;
+        }
+
+        .container {
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+        }
+
+        .card {
+            width: 250px; /* Largeur fixe pour chaque carte */
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .card:hover {
+    transform: scale(1.05); /* Augmente légèrement la taille de la carte au survol */
+}
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color:black;
+        }
+
+
+
+        .card-body p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .card-body a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+
+        .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-logout:hover {
+            background-color: #f1c7cc80;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Pacifico', cursive;
+            color: #a6aaa7;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        p {
+            font-family: 'Pacifico', cursive;
+            color: #666;
+            text-align: center;
+        }
+        .card {
+        /* Autres styles */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    /* Styles pour l'avatar de l'utilisateur */
+.user-avatar {
+    margin-right: auto; /* Pour pousser le bouton de déconnexion vers la droite */
+}
+
+.user-avatar img {
+    width: 70px; /* Taille de l'avatar */
+    height: 70px;
+    border-radius: 40%; /* Pour créer une forme ronde */
+    margin-right: 10px; /* Espacement entre l'avatar et le bouton */
+}
+
+/* Styles pour le bouton de déconnexion */
+.btn-logout {
+    background-color: #bdbbbb;
+    color: rgb(78, 76, 76);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.card:nth-child( 1) {
+    background-color: #daf3f2; /* Couleur 3 */
+}
+
+.card:nth-child(2) {
+    background-color: #efd6f3; /* Couleur 4 */
+}
+
+.card:nth-child( 3) {
+    background-color: #f7edbf; /* Couleur 5 */
+}
+
+.card:nth-child(4) {
+    background-color: #b9b4f8; /* Couleur 6 */
+}
+
+.card:nth-child(5) {
+    background-color: #f8ce9d; /* Couleur 6 */
+}
+
+.card:nth-child(6) {
+    background-color: #d4fabe; /* Couleur 6 */
+}
+.card:nth-child(7) {
+    background-color: #fcd5ce; /* Couleur 6 */
+}
+
+
+
+
+    .card img {
+        /* Autres styles */
+        width: 70%;
+        max-width: 150px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+
+    }
+
+        /* Media query pour les écrans plus petits */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Les cartes s'empilent verticalement */
+                align-items: center; /* Centre les cartes sur l'axe horizontal */
+            }
+
+            .card {
+                width: 80%; /* Largeur ajustée pour s'adapter à l'écran */
+                margin-bottom: 15px;
+                transition: transform 0.3s ease-in-out;
+
+            }
+        }
+        /* Style pour le nom de l'utilisateur à côté de l'avatar */
+.user-avatar span {
+    margin-left: 10px; /* Espacement entre l'avatar et le nom de l'utilisateur */
+    color: #494545; /* Couleur du texte */
+    font-weight: bold; /* Poids de la police */
+    font-size: 16px; /* Taille de la police */
+}
+
+    </style>
+</head>
+<body>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styles CSS */
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <!-- Barre de navigation -->
+<!-- Barre de navigation -->
+<div class="navbar">
+  <!-- Avatar de l'utilisateur avec le nom -->
+  <div class="user-avatar">
+      <img src="https://bootdey.com/img/Content/avatar/avatar7.png">
+      <span>{{user?.nom}}</span>
+  </div>
+  <!-- Bouton de déconnexion -->
+  <!-- Bouton de déconnexion avec une icône -->
+  <a (click)=" logout()" class="btn btn-dark btn-lg position-absolute top-0 end-0 m-3">
+    <i class="fa fa-sign-out"></i>
+  </a></div>
+    <!-- Contenu de la page -->
+    <div class="container">
+        <!-- Cartes pour les différentes sections -->
+        <div class="card">
+            <h2 class="card-title"  (click)="listDemandeEnCours()">Demandes en cours</h2>
+            <img src="/assets/demandeEnCours.png"  (click)="listDemandeEnCours()" alt="Demandes en cours">
+            <div class="card-body">
+                <p  (click)="listDemandeEnCours()">Cliquez ci-dessous pour voir vos demandes en cours.</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2 class="card-title"  (click)="listDemandeArectifier()">Demandes à rectifier</h2>
+            <img src="/assets/demandeArectif.png"  (click)="listDemandeArectifier()" alt="Demandes à rectifier">
+            <div class="card-body">
+                <p  (click)="listDemandeArectifier()">Cliquez ci-dessous pour voir vos demandes à rectifier.</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2 (click)="listDemandeRefuses()" class="card-title">Demandes refusées</h2>
+            <img src="/assets/demandeRefuse.png" (click)="listDemandeRefuses()" alt="Demandes refusées">
+            <div class="card-body">
+                <p (click)="listDemandeRefuses()">Cliquez ci-dessous pour voir vos demandes refusées.</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2 (click)="listDemandeTermines()" class="card-title">Demandes terminées</h2>
+            <img (click)="listDemandeTermines()" src="/assets/demandeDone.png" alt="Demandes terminées">
+            <div class="card-body">
+                <p (click)="listDemandeTermines()">Cliquez ci-dessous pour voir vos demandes terminées.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img  href="/listApiConsummer" src="/assets/apis.png" alt="Liste des API">
+            <div class="card-body">
+                <p  href="/listApiConsummer">Cliquez ci-dessous pour voir la liste des API.</p>
+                <a href="/listApiConsummer" title="API List">
+                  <i class="fas fa-list fa-spin-custom"></i>
+                  <span> API </span>
+              </a>
+            </div>
+        </div>
+        <div class="card">
+            <img (click)="modifierUser(user?.idUser)" src="/assets/modifierProfil.jpg" alt="Modifier le profil">
+            <div class="card-body">
+                <p (click)="modifierUser(user?.idUser)">Cliquez ci-dessous pour modifier votre profil.</p>
+                <a (click)="modifierUser(user?.idUser)" title="Edit Profile">
+                  <i class="fas fa-user-edit fa-bounce"></i>
+                  <span> Modifier Profile</span>
+              </a></div>
+        </div>
+        <div class="card">
+            <img (click)="detailUser(user?.idUser)" src="/assets/profile.png" alt="Détails du profil">
+            <div class="card-body">
+                <p (click)="detailUser(user?.idUser)">Cliquez ci-dessous pour voir les détails de votre profil.</p>
+                <a (click)="detailUser(user?.idUser)" title="Profile">
+                  <i class="fas fa-user fa-blink"></i>
+                  <span> Profile</span>
+              </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Fonctions JavaScript
+    </script>
+</body>
+</html>

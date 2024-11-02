@@ -1,0 +1,87 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="card bg-pattern">
+            <div class="card-body">
+                <h3 class="font-size-20 mt-0 ">
+                    <img src="assets/struct.png" style="width:80px; height:80px; margin-left:400px; color:rgb(241, 131, 150);">
+                    <strong style="color:rgb(238, 114, 135);">Liste des structures</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group mb-0">
+                            <label>Entrez le nom structure</label>
+                            <div class="input-group mb-0">
+                                <input type="text" name="searchKeyword" id="searchInput" [(ngModel)]="searchKeyword" class="form-control" />
+                                <button style="color:rgb(241, 131, 150); height:50px; width:50px;" type="button" (click)="RechercherStructure()"><i class="fa fa-search search-icon font-12"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive project-list">
+                        <div>
+                            <button class="btn btn-default" style="color:rgb(237, 63, 92); border-color:black; background-color:rgb(248, 176, 188); margin-left:1100px; width:100px;" (click)="filtrerStructure(searchKeyword)">
+                                <i class="fa fa-filter"></i> <strong>Trier</strong>
+                            </button>
+                            <button class="btn btn-default" style="color:rgb(237, 63, 92); border-color:black; background-color:rgb(248, 176, 188); margin-right:1100px; width:200px;" (click)="ajouterStructure()">
+                              <i class="fa fa-add"></i> <strong>Nouvelle structure</strong>
+                          </button>
+
+                        </div>
+                        <table class="table project-table table-centered table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="color:rgb(252, 107, 131); text-decoration:underline;">Code</th>
+                                    <th scope="col" style="color:rgb(252, 107, 131); text-decoration:underline;">Email</th>
+                                    <th scope="col" style="color:rgb(252, 107, 131);text-decoration:underline;">Nom en français</th>
+                                    <th scope="col" style="color:rgb(252, 107, 131);text-decoration:underline;">Type</th>
+                                    <th scope="col" style="color:rgb(252, 107, 131);text-decoration:underline;">Tél</th>
+                                    <th scope="col" style="color:rgb(252, 107, 131);text-decoration:underline;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let structure of (searchResults.length ? searchResults : structures)">
+                                    <td><i class="fa fa-code"></i> {{structure.code}}</td>
+                                    <td><i class="fa fa-envelope"></i> {{structure.email}}</td>
+                                    <td><i class="fa fa-language"></i> {{structure.nomFr}}</td>
+                                    <td><i class="fa fa-list"></i> {{structure.type}}</td>
+                                    <td><i class="fa fa-phone"></i>{{structure.telStr}}</td>
+                                    <td>
+                                        <div class="action">
+                                            <i class="fa fa-pencil h5 m-0" style="color:green;" (click)="modifierStructure(structure.id)"></i>
+                                            <i class="fa fa-remove h5 m-0" style="color:red; margin-right:10px;" (click)="supprimerStructure(structure.id)"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pt-3">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Suivante</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

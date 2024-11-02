@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        /* Vos styles fournis */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ajout de styles */
+        .form-align-top {
+            align-items: flex-start;
+        }
+
+        /* Arrière-plan de la page */
+        body {
+            background-color: #eef9fd; /* Couleur de fond légère */
+            height:1000px; /* Taille minimale de la fenêtre d'affichage */
+            display: flex;
+            justify-content: center; /* Centrer le contenu horizontalement */
+            align-items: center; /* Centrer le contenu verticalement */
+        }
+
+        /* Conteneur principal */
+        .container {
+            background-color: white; /* Fond blanc */
+            border-radius: 8px; /* Coins arrondis */
+            padding: 20px; /* Espacement intérieur */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Ombre légère */
+        }
+
+        /* Couleurs des icônes */
+        .icon-blue {
+            color: blue;
+        }
+
+        .icon-green {
+            color: green;
+        }
+
+        .icon-red {
+            color: red;
+        }
+
+        .icon-orange {
+            color: orange;
+        }
+
+        .icon-purple {
+            color: purple;
+        }
+
+        /* Styles pour les titres */
+        h5 {
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 text-align-end text-center-md text-center-xs aos-init aos-animate" data-aos="fade-in" data-aos-delay="50" data-aos-offset="0">
+        <div *ngIf="isCardOpen" class="d-inline-block bg-white shadow-primary-xs rounded p-4 p-md-5 w-100 max-w-450 text-align-start">
+            <h2 class="h5 mb-5">
+                <i class="fi fi-homeadvisor"></i>
+                <div class="d"><i class="fa fa-info-circle"></i> Détails de la demande N°{{demande.idDemande}}</div>
+            </h2>
+            <button class="btn btn-primary mb-3 a" onclick="window.print()"><i class="fas fa-print"></i></button>
+            <button class="btn btn-warning mb-3 a" (click)="envoyermail()"><i class="fas fa-envelope"></i></button>
+
+            <!-- Infos sur L application consommant -->
+            <h5><i class="fas fa-desktop icon-blue"></i> Infos sur l'application consommant </h5>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="control-label" for="nomapp"><i class="fas fa-desktop icon-blue"></i> Nom de l'application</label>
+                    <input class="form-control" id="nomapp" type="text" name="nomapp" [(ngModel)]="demande.nomapp" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="hebergeurapp"><i class="fas fa-server icon-blue"></i> Nom de l'hébergeur</label>
+                    <input class="form-control" id="hebergeurapp" type="text" name="hebergeurapp" [(ngModel)]="demande.hebergeurapp" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="payshebergeur"><i class="fas fa-globe icon-blue"></i> Pays de l'hébergeur</label>
+                    <input class="form-control" id="payshebergeur" type="text" name="payshebergeur" [(ngModel)]="demande.payshebergeur" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="nomdomaineapp"><i class="fas fa-globe icon-blue"></i> Nom de domaine de l'application</label>
+                    <input class="form-control" id="nomdomaineapp" type="text" name="nomdomaineapp" [(ngModel)]="demande.nomdomaineapp" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="adresseipapp"><i class="fas fa-network-wired icon-blue"></i> Adresse IP des serveurs</label>
+                    <input class="form-control" id="adresseipapp" type="text" name="adresseipapp" [(ngModel)]="demande.adresseipapp" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="typeconnexion"><i class="fas fa-wifi icon-blue"></i> Type de connexion au CNI</label>
+                    <input class="form-control" id="typeconnexion" type="text" name="typeconnexion" [(ngModel)]="demande.typeconnexion" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="publie"><i class="fas fa-globe icon-blue"></i> Publié sur Internet</label>
+                    <div class="radio-icon">
+                        <input type="radio" id="publie-oui" name="publie" [(ngModel)]="demande.publie" [value]="true" [checked]="demande.publie === true" readonly>
+                        <label for="publie-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type de consommation -->
+            <h5><i class="fas fa-phone icon-green"></i> Type de consommation </h5>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="control-label" for="nombreappelan"><i class="fas fa-phone icon-green"></i> Nombre estimé d'appels par an</label>
+                    <input class="form-control" id="nombreappelan" type="number" name="nombreappelan" [(ngModel)]="demande.nombreappelan" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="nombreappelmin"><i class="fas fa-phone-volume icon-green"></i> Nombre estimé d'appels par minute</label>
+                    <input class="form-control" id="nombreappelmin" type="number" name="nombreappelmin" [(ngModel)]="demande.nombreappelmin" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="invomasse"><i class="fas fa-microphone icon-green"></i> Besoin d'Invocation par masse</label>
+                    <div class="radio-icon">
+                        <input type="radio" id="invomasse-oui" name="invomasse" [(ngModel)]="demande.invomasse" [value]="true" [checked]="demande.invomasse === true" readonly>
+                        <label for="invomasse-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="dateinvmasse"><i class="fas fa-calendar-alt icon-green"></i> Date de l'invocation en masse</label>
+                    <input class="form-control" id="dateinvmasse" type="date" name="dateinvmasse" [(ngModel)]="demande.dateinvmasse" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" for="raisoninmasse"><i class="fas fa-info-circle icon-green"></i> Raison de l'invocation en masse</label>
+                    <input class="form-control" id="raisoninmasse" type="text" name="raisoninmasse" [(ngModel)]="demande.raisoninmasse" required readonly>
+                </div>
+            </div>
+
+            <!-- Autres Infos -->
+            <h5><i class="fas fa-info-circle icon-red"></i> Autres détails sur cette demande </h5>
+            <form class="form-horizontal ng-pristine ng-valid">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label class="control-label" for="reference"><i class="fas fa-bookmark icon-red"></i> Référence demande</label>
+                        <input class="form-control" id="reference" type="text" name="reference" [(ngModel)]="demande.reference" required readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label" for="datemodification"><i class="fas fa-calendar-plus icon-red"></i> Date de modification</label>
+                        <input class="form-control" id="datemodification" type="date" name="datemodification" [(ngModel)]="demande.datemodification" required readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label" for="statut"><i class="fas fa-file-alt icon-red"></i> Statut demande</label>
+                        <input class="form-control" id="statut" type="text" name="statut" [(ngModel)]="demande.statut" required readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label" for="description"><i class="fas fa-file-alt icon-red"></i> Description</label>
+                        <input class="form-control" id="description" type="text" name="description" [(ngModel)]="demande.description" required readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label" for="datecreation"><i class="fas fa-calendar-plus icon-red"></i> Date de création</label>
+                        <input class="form-control" id="datecreation" type="date" name="datecreation" [(ngModel)]="demande.datecreation" required readonly>
+                    </div>
+                </div>
+
+                <!-- Bouton Fermer -->
+                <div class="modal-footer a">
+                    <button type="button" class="btn btn-secondary e" (click)="closeModal()">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 mb-5 text-white aos-init aos-animate" data-aos="fade-in" data-aos-delay="0" data-aos-offset="0">
+        <!-- Titre principal -->
+        <h1 class="display-4 fw-bold mb-0">
+            <span class="d-inline-block">
+                <span class="h6 fw-normal d-block text-align-end text-center-xs">
+                </span>
+                <span class="text-danger"></span>
+            </span>
+        </h1>
+        <!-- Slogan -->
+        <p class="h3 fw-normal mb-0">
+        </p>
+        <img src="assets/photodetail.jpg" alt="Image" class="img-fluid">
+    </div>
+</body>
+</html>

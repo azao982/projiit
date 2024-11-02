@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validateurs</title>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  h1 {
+      align-items: center;
+      text-align:  center;
+  }
+
+  .title-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+  }
+.form-control {
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+  border-radius: 25px;
+}
+
+</style>
+
+</head>
+<body>
+  <h1> Liste des Validateurs  <i class="fa fa-users title-icon"></i></h1>
+  <div class="container">
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fa fa-circle-arrow-left ml-4 mr-2" routerLink="/accueil"></i> Accueil
+      </div>
+    <button class="btn btn-danger" (click)="filtrerUser(user.grade)">
+      <i class="fa fa-filter"></i> Filtrer
+    </button>
+    </div>
+      <!-- Conteneur pour les utilisateurs -->
+      <div class="row bootstrap snippets bootdey justify-content-start">
+                <!-- Boucle sur les utilisateurs -->
+                <div class="col-md-4 mb-3" *ngFor="let user of (searchResults.length ? searchResults : users); let i = index">
+                  <div class="team-member">
+
+                        <figure class="effect-zoe">
+
+                            <div class="team-photo">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Avatar" class="img-responsive">
+                            </div>
+
+                            <div class="team-attrs">
+                                <div class="team-name font-accident-two-bold-italic">{{user.nom}} {{user.prenom}}</div>
+                                <div class="team-position" style="color: red;">{{user.email}}</div>
+                            </div>
+                            
+                            <div class="team-content small">
+                                C'est <strong>{{user.nom}} {{user.prenom}} </strong>. Il est {{user.fonction}} {{user.grade}}. Son numéro : <strong> {{user.mobile}}</strong>
+                            </div>
+                            <figcaption>
+                                <div>
+                                  <br><br>
+                                    <i class="fa fa-circle-info" (click)="detailUser(user.idUser)"></i>
+                                    <i class="fa fa-trash" (click)="supprimerUser(user.idUser)"></i>
+                                    <i class="fa fa-edit" (click)="modifierUser(user.idUser)"></i>
+                                </div>
+                                <p class="phone-number">
+                                    <a href="#!">Tél : {{user.mobile }}</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-8">
+                    <div class="team-member">
+                      <div class="effect-zoe">
+                        <div class="text-center px-xl-3">
+                          <button class="btn btn-warning btn-block" type="button" data-bs-toggle="modal" data-bs-target="#user-form-modal" (click)="onAjouter()">
+                            <i class="fa fa-plus"></i> Ajouter Validateurs
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 search-container d-flex align-items-center">
+                    <input type="text" placeholder="Rechercher" class="input" id="searchInput" [(ngModel)]="searchKeyword"/>
+                    <button class="btn btn-primary ml-2" (click)="RechercherUser()">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div></div></div>
+  <!-- User Form Modal -->
+  <div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal" aria-labelledby="user-form-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa fa-user-plus"></i> Créer nouvel Utilisateur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="userForm">
+            <!-- Form fields with icons -->
+            <div class="mb-3">
+              <label for="nom" class="form-label"><i class="fa fa-user"></i> Nom</label>
+              <input class="form-control" type="text" id="nom" formControlName="nom" required>
+            </div>
+            <div class="mb-3">
+              <label for="prenom" class="form-label"><i class="fa fa-user"></i> Prénom</label>
+              <input class="form-control" type="text" id="prenom" formControlName="prenom" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label"><i class="fa fa-envelope"></i> Email</label>
+              <input class="form-control" type="email" id="email" formControlName="email" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="password"><i class="fa fa-key"></i> Password</label>
+              <input class="form-control" type="password" id="password" formControlName="password" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="cin"> <i class="fa fa-id-card"></i> CIN</label>
+              <input class="form-control" type="text" id="cin" formControlName="cin"  required>
+            </div>
+            <div class="mb-3">
+              <label for="grade">  <i class="fa fa-graduation-cap"></i> Grade</label>
+              <input class="form-control" type="text" id="grade" formControlName="grade" bplaceholder="ingenieur / technicien / ouvrier ..." required>
+            </div>
+
+            <div class="mb-3">
+                    <label for="cnrps"><i class="fa fa-id-card"></i> CNRPS</label>
+                    <input class="form-control" type="text" id="cnrps" formControlName="cnrps"  required>
+            </div>
+            <div class="mb-3">
+                    <label for="fonction"><i class="fa fa-briefcase"></i> Fonction</label>
+                    <input class="form-control" type="text" id="fonction" formControlName="fonction" required>
+            </div>
+            <div class="mb-3">
+              <label for="profile"><i class="fa fa-user"></i> Profile</label>
+              <select class="form-control" id="profile" formControlName="profile" required>
+                <option value="validateur_1er_niveau">Validateur 1er Niveau</option>
+                <option value="validateur_2eme_niveau">Validateur 2ème Niveau</option>
+              </select>
+            </div>
+
+      <div class="mb-3">
+                    <label for="mobile"><i class="fa fa-phone"></i> Mobile</label>
+                    <input class="form-control" type="text" id="mobile" formControlName="mobile" required>
+            </div>
+            <div class="mb-3">
+                  <div class="row">
+                    <div class="text-center">
+                      <button type="button" (click)="onAjouter()" class="btn btn-primary" [disabled]="formulaire">
+                          <i class="fa fa-plus-circle"></i> Enregistrer User
+                      </button>
+                  </div>
+                  </div>
+                </div>
+            </form>
+            <div>
+              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fermer</button>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</body>
+</html>

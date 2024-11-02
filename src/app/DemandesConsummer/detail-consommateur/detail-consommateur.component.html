@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        /* Styles for bold labels and same size */
+        .form-group label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Styles for radio buttons with icons */
+        .radio-icon {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .radio-icon input[type="radio"] {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-icon label {
+            cursor: pointer;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .radio-icon label:before {
+            content: "\f10c";
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .radio-icon input[type="radio"]:checked+label:before {
+            content: "\f111";
+            color: #007bff;
+            background-color: #fff;
+        }
+
+        /* Styles for icons */
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container bootstrap snippets bootdey">
+        <div class="row ng-scope">
+            <div class="col-md-4">
+                <!-- Left Panel -->
+                    <div class="panel-body text-center">
+                      <div class="pv-lg">
+                        <img class="center-block img-responsive img-circle img-thumbnail thumb96" src="/assets/demande.avif" alt="Contact"></div>
+                      <div class="mv-lg">
+                          <p>Ce sont les détails de la demande dont l'identifiant est <strong> {{demande.idDemande}}</strong> </p>
+                      </div>
+                </div>
+                <div class="panel panel-default hidden-xs hidden-sm">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="background-color:rgb(246, 242, 230);">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="h4 text-center ">Informations de la demande N°<strong>{{demande.reference}}</strong></div>
+                        <div class="row pv-lg">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <form class="form-horizontal ng-pristine ng-valid">
+                                    <!-- ID Demande -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="idDemande"><i class="fas fa-id-card icon"></i>ID Demande</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="idDemande" type="number" name="idDemande" [(ngModel)]="demande.idDemande" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Description -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="description"><i class="fas fa-file-alt icon"></i>Description</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="description" type="text" name="description" [(ngModel)]="demande.description" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Référence -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="reference"><i class="fas fa-bookmark icon"></i>Référence</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="reference" type="text" name="reference" [(ngModel)]="demande.reference" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Nom de l'application -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="nomapp"><i class="fas fa-desktop icon"></i>Nom de l'application</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="nomapp" type="text" name="nomapp" [(ngModel)]="demande.nomapp" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Hébergeur de l'application -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="hebergeurapp"><i class="fas fa-server icon"></i>Hébergeur de l'application</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="hebergeurapp" type="text" name="hebergeurapp" [(ngModel)]="demande.hebergeurapp" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Publié -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="publie"><i class="fas fa-globe icon"></i>Publié</label>
+                                        <div class="col-sm-12">
+                                            <div class="radio-icon">
+                                                <input type="radio" id="publie-oui" name="publie" [(ngModel)]="demande.publie" [value]="true" [checked]="demande.publie === true" readonly>
+                                                <label for="publie-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Invoqué par masse -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="invomasse"><i class="fas fa-microphone icon"></i>Invoqué par masse</label>
+                                        <div class="col-sm-12">
+                                            <div class="radio-icon">
+                                                <input type="radio" id="invomasse-oui" name="invomasse" [(ngModel)]="demande.invomasse" [value]="true" [checked]="demande.invomasse === true" readonly>
+                                                <label for="invomasse-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Nom de domaine de l'application -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="nomdomaineapp"><i class="fas fa-globe icon"></i>Nom de domaine de l'application</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="nomdomaineapp" type="text" name="nomdomaineapp" [(ngModel)]="demande.nomdomaineapp" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Adresse IP de l'application -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="adresseipapp"><i class="fas fa-network-wired icon"></i>Adresse IP de l'application</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="adresseipapp" type="text" name="adresseipapp" [(ngModel)]="demande.adresseipapp" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Type de connexion -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="typeconnexion"><i class="fas fa-wifi icon"></i>Type de connexion</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="typeconnexion" type="text" name="typeconnexion" [(ngModel)]="demande.typeconnexion" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Nombre d'appels en attente -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="nombreappelan"><i class="fas fa-phone icon"></i>Nombre d'appels en attente</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="nombreappelan" type="number" name="nombreappelan" [(ngModel)]="demande.nombreappelan" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Nombre d'appels minimum -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="nombreappelmin"><i class="fas fa-phone-volume icon"></i>Nombre d'appels minimum</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="nombreappelmin" type="number" name="nombreappelmin" [(ngModel)]="demande.nombreappelmin" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Pays de l'hébergeur -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="payshebergeur"><i class="fas fa-globe icon"></i>Pays de l'hébergeur</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="payshebergeur" type="text" name="payshebergeur" [(ngModel)]="demande.payshebergeur" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Date de l'invocation en masse -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="dateinvmasse"><i class="fas fa-calendar-alt icon"></i>Date de l'invocation en masse</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="dateinvmasse" type="date" name="dateinvmasse" [(ngModel)]="demande.dateinvmasse" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Raison de l'invocation en masse -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="raisoninmasse"><i class="fas fa-question icon"></i>Raison de l'invocation en masse</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="raisoninmasse" type="text" name="raisoninmasse" [(ngModel)]="demande.raisoninmasse" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Date de création -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="datecreation"><i class="fas fa-calendar-plus icon"></i>Date de création</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="datecreation" type="date" name="datecreation" [(ngModel)]="demande.datecreation" required readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Date de modification -->
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 control-label" for="datemodification"><i class="fas fa-calendar-alt icon"></i>Date de modification</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" id="datemodification" type="date" name="datemodification" [(ngModel)]="demande.datemodification" required readonly>
+                                        </div>
+
+                                    </div>
+                                    <!-- Statut -->
+<div class="form-group row">
+    <label for="statut"><i class="fas fa-check-circle"></i> Statut:</label>
+    <div>
+
+    <div>
+      <label>
+          <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="enCoursConsommateur">
+          En Cours Consommateur
+      </label>
+  </div>
+  <label>
+    <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="terminée">
+    Terminée
+</label>
+</div>
+    <div>
+        <label>
+            <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="refusée">
+            Refusée
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="à_rectifier">
+            À rectifier
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="en_cours_1ere_validation">
+            En cours de Validation 1er niveau
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" [(ngModel)]="demande.statut" name="statut" id="statut" value="en_cours_2eme_validation">
+            En cours de Validation 2ème niveau        </label>
+    </div>
+    <!-- Afficher le message d'erreur -->
+    <div *ngIf="demande.get('statut').invalid && (demande.get('statut').touched || demande.get('statut').dirty)" class="invalid-feedback">
+        <h5>Le statut ne doit pas être vide.</h5>
+    </div>
+</div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

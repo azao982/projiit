@@ -1,0 +1,30 @@
+<br><br><div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card p-4  bg"> <!-- Ajout de la classe bg-light pour une couleur de fond claire -->
+              <div class="card-body">
+                  <form [formGroup]="mailForm">
+                      <div class="mb-3">
+                          <label for="toEmail" class="form-label"><i class="fas fa-user"></i> Destinataire</label>
+                          <input class="form-control" type="email" id="toEmail" formControlName="toEmail" required placeholder="Destinataire">
+                      </div>
+                      <div class="mb-3">
+                          <label for="subject" class="form-label"><i class="fas fa-calendar-alt"></i> Objet</label>
+                          <input class="form-control" id="subject" formControlName="subject" required placeholder="Objet">
+                      </div>
+                      <div class="mb-3">
+                          <label for="body" class="form-label"><i class="fas fa-comment-alt"></i> Message</label>
+                          <textarea class="form-control" id="body" formControlName="body" style="height: 130px;" required placeholder="Message"></textarea>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                          <button type="button" (click)="onAjouter()" class="btn btn-dark t" [disabled]="!mailForm.valid">
+                              <i class="fas fa-paper-plane"></i> Envoyer Mail
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

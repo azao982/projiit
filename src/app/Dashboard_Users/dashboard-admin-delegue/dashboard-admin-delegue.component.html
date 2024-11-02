@@ -1,0 +1,100 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<br><br>
+
+<div class="container">
+  <div class="row z">
+    <!-- Première partie pour le menu du validateur -->
+    <div class="col-md-3 menu-card">
+      <div class="user-profile__avatar shadow-effect text-center mb-4">
+        <img class="img-responsive center-block rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="..." style="width: 80px;">
+        <div>
+            <h4 class="mt-2">{{ user?.nom }}</h4>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <button class="btn btn-default menu-admin-delegue">Menu admin_délégué</button>
+        <div class="panel-body">
+          <ul class="list-unstyled text-center">
+            <li class="mb-2"><a (click)="detailUser(user?.idUser)"  class="text-dark"><i class="fa fa-user"></i> Mon profil</a></li>
+            <li class="mb-2"><a [routerLink]="['/modifierUser', user?.idUser]" class="text-dark"><i class="fa fa-edit"></i> Modifier profil</a></li>
+            <li><a (click)=" logout()" class="text-dark"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Deuxième partie pour les 3 cartes -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100 z">
+            <img src="assets/upm.jpg" class="card-img-top" (click)="modifierProfil(user?.idUser)" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="fa fa-edit" (click)="modifierProfil(user?.idUser)" style="cursor: pointer;"></i>
+              <strong class="d-block mt-2">Modifier profil utilisateur</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100 z">
+              <img src="assets/modie.jpg" class="card-img-top" (click)="modifierUser(user?.idUser)" style="cursor: pointer;">
+              <div class="card-body text-center">
+                <i class="fa fa-edit" (click)="modifierUser(user?.idUser)" style="cursor: pointer;"></i>
+                <strong class="d-block mt-2">Modifier mes données</strong>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100 z">
+              <img src="assets/ap.jpg" class="card-img-top" (click)="listApi()" style="cursor: pointer;">
+              <div class="card-body text-center">
+                <i class="fa fa-list" (click)="listApi()" style="cursor: pointer;"></i>
+                <strong class="d-block mt-2">Liste des apis</strong>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100 z">
+              <img src="assets/modi.jpg" class="card-img-top" (click)="detailUser(user?.idUser)" style="cursor: pointer;">
+              <div class="card-body text-center">
+                <i class="fa fa-circle-info" (click)="detailUser(user?.idUser)" style="cursor: pointer;"></i>
+                <strong class="d-block mt-2">Détails Profil</strong>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .user-profile__avatar {
+    margin-top: 20px;
+  }
+  .panel-heading {
+    font-weight: bold;
+  }
+  .panel-body ul {
+    padding: 0;
+  }
+  .panel-body ul li a {
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+  .card {
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .card-img-top {
+    height: 210px;
+    object-fit: cover;
+  }
+/* Ajustez la valeur selon vos besoins */
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        html, body {
+            height: 100px;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #e1f5f8;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card-title {
+            background-color: #d3e7ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Brush Script MT', cursive;
+            color: #333;
+        }
+
+        .btn-custom {
+            background-color: #80c7e0;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-custom i {
+            margin-right: 8px;
+        }
+
+        .btn-custom:hover {
+            background-color: #5ca8bf;
+        }
+
+        .form-group label {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-control {
+            background-color: #f9f9f9;
+        }
+
+        .radio-icon label {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            justify-content: center;
+        }
+
+        .fa-info-circle,
+        .fa-check-circle,
+        .fa-exclamation-triangle {
+            color: #333;
+        }
+
+        h5 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="card-title">
+
+            <i class="fa fa-info-circle"></i> Détails de la demande N°{{demande.idDemande}}
+        </div>
+        <button class="btn btn-custom mb-3" onclick="window.print()"><i class="fas fa-print"></i> Imprimer</button>
+
+        <h5><i class="fa fa-circle-info"></i> Infos sur l'API demandé dans cette requête</h5>
+        <div *ngIf="selectedApi" class="api-details-container">
+            <div class="api-details">
+                <div class="api-info">
+                    <p><i class="fas fa-file-pdf api-info-icon"></i> <span class="api-info-label">Nom de l'API :</span> {{ selectedApi.nom }}</p>
+                    <p><i class="fas fa-file-code api-info-icon"></i> <span class="api-info-label">Code de l'API :</span> {{ selectedApi.code }}</p>
+                    <p><i class="fas fa-info api-info-icon"></i> <span class="api-info-label">Description de l'API :</span> {{ selectedApi.description }}</p>
+                    <p><i class="fas fa-file-alt api-info-icon"></i> <span class="api-info-label">Input de l'API :</span> {{ selectedApi.input }}</p>
+                    <p><i class="fas fa-file-export api-info-icon"></i> <span class="api-info-label">Output de l'API :</span> {{ selectedApi.output }}</p>
+                    <p><i class="fas fa-briefcase api-info-icon"></i> <span class="api-info-label">Cadre d'utilisation de l'API :</span> {{ selectedApi.cadreUtilisation }}</p>
+                    <p><i class="fas fa-link api-info-icon"></i> <span class="api-info-label">URL de l'API :</span> {{ selectedApi.url }}</p>
+                    <p><i class="fas fa-cogs api-info-icon"></i> <span class="api-info-label">Mode de l'API :</span> {{ selectedApi.mode }}</p>
+                    <p><i class="fas fa-network-wired api-info-icon"></i> <span class="api-info-label">Méthode de l'API :</span> {{ selectedApi.methode }}</p>
+                    <p><i class="fas fa-exclamation-triangle api-info-icon"></i> <span class="api-info-label">Impact de l'API :</span> {{ selectedApi.impact }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="nomapp"><i class="fas fa-desktop icon"></i> Nom de l'application</label>
+                <input class="form-control" id="nomapp" type="text" name="nomapp" [(ngModel)]="demande.nomapp" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="hebergeurapp"><i class="fas fa-server icon"></i> Nom de l'hébergeur</label>
+                <input class="form-control" id="hebergeurapp" type="text" name="hebergeurapp" [(ngModel)]="demande.hebergeurapp" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="payshebergeur"><i class="fas fa-globe icon"></i> Pays de l'hébergeur</label>
+                <input class="form-control" id="payshebergeur" type="text" name="payshebergeur" [(ngModel)]="demande.payshebergeur" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="nomdomaineapp"><i class="fas fa-globe icon"></i> Nom de domaine de l'application</label>
+                <input class="form-control" id="nomdomaineapp" type="text" name="nomdomaineapp" [(ngModel)]="demande.nomdomaineapp" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="adresseipapp"><i class="fas fa-network-wired icon"></i> Adresse IP des serveurs</label>
+                <input class="form-control" id="adresseipapp" type="text" name="adresseipapp" [(ngModel)]="demande.adresseipapp" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="typeconnexion"><i class="fas fa-wifi icon"></i> Type de connexion au CNI</label>
+                <input class="form-control" id="typeconnexion" type="text" name="typeconnexion" [(ngModel)]="demande.typeconnexion" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="publie"><i class="fas fa-globe icon"></i> Publié sur Internet</label>
+                <div class="radio-icon">
+                    <input type="radio" id="publie-oui" name="publie" [(ngModel)]="demande.publie" [value]="true" [checked]="demande.publie === true" readonly>
+                    <label for="publie-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                </div>
+            </div>
+        </div>
+
+        <h5><i class="fa fa-circle-info"></i> Type de consommation</h5>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="nombreappelan"><i class="fas fa-phone icon"></i> Nombre estimé d'appels par an</label>
+                <input class="form-control" id="nombreappelan" type="number" name="nombreappelan" [(ngModel)]="demande.nombreappelan" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="nombreappelmin"><i class="fas fa-phone-volume icon"></i> Nombre estimé d'appels par minute</label>
+                <input class="form-control" id="nombreappelmin" type="number" name="nombreappelmin" [(ngModel)]="demande.nombreappelmin" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="invomasse"><i class="fas fa-microphone icon"></i> Besoin d'Invocation par masse</label>
+                <div class="radio-icon">
+                    <input type="radio" id="invomasse-oui" name="invomasse" [(ngModel)]="demande.invomasse" [value]="true" [checked]="demande.invomasse === true" readonly>
+                    <label for="invomasse-oui"><i class="fas fa-check-circle"></i> Oui</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="dateinvmasse"><i class="fas fa-calendar-alt icon"></i> Date de l'invocation en masse</label>
+                <input class="form-control" id="dateinvmasse" type="date" name="dateinvmasse" [(ngModel)]="demande.dateinvmasse" required readonly>
+            </div>
+            <div class="col-sm-6">
+                <label for="raisoninmasse"><i class="fas fa-info-circle icon"></i> Raison de l'invocation en masse</label>
+                <input class="form-control" id="raisoninmasse" type="text" name="raisoninmasse" [(ngModel)]="demande.raisoninmasse" required readonly>
+            </div>
+        </div>
+
+        <h5><i class="fa fa-circle-info"></i> Autres détails sur cette demande</h5>
+        <form class="form-horizontal ng-pristine ng-valid">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="reference"><i class="fas fa-bookmark icon"></i> Référence demande</label>
+                    <input class="form-control" id="reference" type="text" name="reference" [(ngModel)]="demande.reference" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label for="statut"><i class="fas fa-file-alt icon"></i> Statut demande</label>
+                    <input class="form-control" id="statut" type="text" name="statut" [(ngModel)]="demande.statut" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label for="description"><i class="fas fa-file-alt icon"></i> Description</label>
+                    <input class="form-control" id="description" type="text" name="description" [(ngModel)]="demande.description" required readonly>
+                </div>
+                <div class="col-sm-6">
+                    <label for="datecreation"><i class="fas fa-calendar-plus icon"></i> Date de création</label>
+                    <input class="form-control" id="datecreation" type="date" name="datecreation" [(ngModel)]="demande.datecreation" required readonly>
+                </div>
+                <div class="col-sm-6">
+                  <label for="datemodification"><i class="fas fa-calendar-plus icon"></i> Date de modification</label>
+                  <input class="form-control" id="datemodification" type="date" name="datemodification" [(ngModel)]="demande.datemodification" required readonly>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom" (click)="closeModal()"><i class="fas fa-times"></i> Fermer</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+</body>
+</html>
+<br><br>

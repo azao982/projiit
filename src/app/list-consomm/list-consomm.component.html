@@ -1,0 +1,200 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="card-header">
+    <br><br>
+    <h5>Liste des Consommateurs </h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 text-center px-xl-3">
+        <button class="btn btn-warning btn-block" type="button" data-bs-toggle="modal" data-bs-target="#user-form-modal" (click)="onAjouter()">
+          <i class="fa fa-add"></i> Ajouter User
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-danger" (click)="filtrerUser(user.grade)">
+          <i class="fa fa-filter"></i> Filtrer
+        </button>
+      </div>
+      <div class="col-md-3 search-container d-flex align-items-center">
+        <input type="text"  placeholder="Rechercher" class="input" id="searchInput" [(ngModel)]="searchKeyword"/>
+        <button class="btn btn-primary ml-2" (click)="RechercherUser()">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let cons of (searchResults.length ? searchResults : users); let i = index">
+      <div class="card user-card" [ngStyle]="{'background-color': userColors[i % userColors.length]}">
+        <div class="card-block">
+          <div class="user-image">
+            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-radius" alt="User-Profile-Image">
+          </div>
+          <h6 class="f-w-600 m-t-25 m-b-10">{{cons.nom}} {{cons.prenom}}</h6>
+          <p>Son identifiant est : {{cons.idUser}}</p>
+          <p class="text-muted">{{cons.email}} | {{cons.mobile}} || <br> N° CIN : {{cons.cin}}</p>
+          <div class="counter-block m-t-10 p-20">
+            <div class="row">
+              <div class="col-md-4" [ngStyle]="{'background-color': userContainerColors[i % userContainerColors.length]}">
+                <i class="fa fa-key" [style.color]="userIconColors[i % userIconColors.length]"></i>
+               <br> {{cons.password}}
+              </div>
+              <div class="col-md-4" [ngStyle]="{'background-color': userContainerColors[i % userContainerColors.length]}">
+                <i class="fa fa-user" [style.color]="userIconColors[i % userIconColors.length]"></i>
+                {{cons.cnrps}}
+             <br> </div>
+              <div class="col-md-4" [ngStyle]="{'background-color': userContainerColors[i % userContainerColors.length]}">
+                <i class="fa fa-phone" [style.color]="userIconColors[i % userIconColors.length]"></i>
+                {{cons.mobile}}<br>
+              </div>
+            </div>
+          </div>
+          <p class="m-t-15 text-muted">{{cons.nom}} {{cons.prenom}} est un(e) {{cons.grade}} {{cons.fonction}}. Tu peux le contacter sur le {{cons.mobile}} ou bien via Email {{cons.email}}</p>
+          <hr>
+          <div class="row justify-content-center user-social-link">
+            <div class="col-auto"><a href="https://www.facebook.com"><i class="fa fa-facebook text-facebook" [style.color]="userIconColors[i % userIconColors.length]"></i></a></div>
+            <div class="col-auto"><a href="https://www.twitter.com"><i class="fa fa-twitter text-twitter" [style.color]="userIconColors[i % userIconColors.length]"></i></a></div>
+            <div class="col-auto"><a href="https://www.instagram.com"><i class="fa fa-dribbble text-dribbble" [style.color]="userIconColors[i % userIconColors.length]"></i></a></div>
+          </div>
+          <hr>
+          <div class="btn-group align-top">
+            <strong>
+             <i class="fa fa-pencil font" (click)="modifierUser(cons.idUser)"> </i>
+             <i class="fa fa-trash font" (click)="supprimerUser(cons.idUser)"> </i>
+             <i class="fa fa-info-circle font" (click)="detailUser(cons.idUser)"> </i>
+            </strong>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- User Form Modal -->
+  <div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal" aria-labelledby="user-form-modal" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> <i class="fa fa-plus"></i> Créer nouvel Utilisateur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="py-1">
+            <form [formGroup]="userForm">
+              <div class="row">
+                <div class="col">
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input class="form-control" type="text" id="nom" formControlName="nom"   required>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input class="form-control" type="text" formControlName="prenom"  id="prenom"  required>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input class="form-control" type="email" id="email" formControlName="email" required>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" id="password" formControlName="password" required>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="cin">CIN</label>
+                      <input class="form-control" type="text" id="cin" formControlName="cin"  required>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="grade">Grade</label>
+                    <input class="form-control" type="text" id="grade" formControlName="grade" bplaceholder="ingenieur / technicien / ouvrier ..." required>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="cnrps">CNRPS</label>
+                    <input class="form-control" type="text" id="cnrps" formControlName="cnrps"  required>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="fonction">Fonction</label>
+                    <input class="form-control" type="text" id="fonction" formControlName="fonction" required>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="profile"><i class="fa fa-user"></i> Profile</label>
+                <input class="form-control" type="text" id="fonction" formControlName="fonction" value="consommateur" readonly>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input class="form-control" type="text" id="mobile" formControlName="mobile" required>
+                  </div>
+                </div>
+              </div>
+              <br>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-6 mb-3">
+                  <div class="row">
+                    <div class="text-center">
+                      <button type="button" (click)="onAjouter()" class="btn btn-primary" [disabled]="formulaire">
+                          <i class="fa fa-plus-circle"></i> Enregistrer User
+                      </button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        <!--closing footer-->
+        <div>
+            <button type="button" classe="btn btn-dark" data-bs-dismiss="modal" style="margin-left:380px; margin-bottom:20px; width:100px"> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---->
